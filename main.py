@@ -62,15 +62,16 @@ class Face_Recognition_System:
 
         #====title=========
         self.txt = "Hệ thống nhận diện khuôn mặt"
-        self.count = 0
-        self.text = ''
-        self.color = ["#4f4e4d", "#f29844", "red2"]
-        self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 26, "bold"), bg="white", fg="black",
-                             bd=5, relief=FLAT)
-        self.heading.place(x=360, y=22, width=500)
-        self.slider()
-        self.heading_color()
-
+        # self.count = 0
+        # self.text = ''
+        # self.color = ["#4f4e4d", "#f29844", "red2"]
+        # self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 26, "bold"), bg="white", fg="black",
+        #                      bd=5, relief=FLAT)
+        # self.heading.place(x=360, y=22, width=500)
+        # self.slider()
+        # self.heading_color()
+        lbl_main = Label(text="Hệ thống nhận diện khuôn mặt", font=("times new roman", 26,"bold"),bg="white", fg="red")
+        lbl_main.place(x=360, y=22, width=500)
         #=========account===========
         #===get email from db=============
         self.account=""

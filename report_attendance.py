@@ -28,11 +28,11 @@ class Report:
         self.noatt=StringVar()
 
         img3 = PIL.Image.open(r"ImageFaceDetect\bg1.png")
-        img3 = img3.resize((1530, 790), PIL.Image.ANTIALIAS)
+        img3 = img3.resize((1280, 650), PIL.Image.ANTIALIAS)
         self.photoimg3 = ImageTk.PhotoImage(img3)
 
         bg_img = Label(self.root, image=self.photoimg3)
-        bg_img.place(x=0, y=0, width=1530, height=790)
+        bg_img.place(x=0, y=0, width=1280, height=650)
 
         # ==================================heading====================================
         # =========time=========
@@ -49,12 +49,12 @@ class Report:
         self.heading_color()
 
         main_frame = Frame(bg_img, bd=2, bg="white")
-        main_frame.place(x=20, y=69, width=1482, height=692)
+        main_frame.place(x=20, y=69, width=1280, height=650)
 
         # ===================Top_label=====================
         Top_frame=LabelFrame(main_frame, bd=0, bg="white",
                                 font=("times new roman", 12, "bold"))
-        Top_frame.place(x=5,y=0,width=1470,height=120)
+        Top_frame.place(x=5,y=0,width=1260,height=120)
         #===================select_for_txt=================
         conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
@@ -89,7 +89,7 @@ class Report:
 
         #student_frame
         student_frame=LabelFrame(Top_frame,bd=1,bg='#27a9e3')
-        student_frame.place(x=5,y=0,width=355,height=120)
+        student_frame.place(x=5,y=0,width=280,height=100)
 
         img_student = PIL.Image.open(r"ImageFaceDetect\sv.png")
         # img_student = img_student.resize((50, 50), PIL.Image.ANTIALIAS)
@@ -103,23 +103,23 @@ class Report:
 
         #attendance_success
         att_frame = LabelFrame(Top_frame, bd=1, bg='#28b779')
-        att_frame.place(x=375, y=0, width=355, height=120)
+        att_frame.place(x=320, y=0, width=280, height=100)
 
         img_att = PIL.Image.open(r"ImageFaceDetect\sodd.png")
-        img_att = img_att.resize((50, 50), PIL.Image.ANTIALIAS)
+        img_att = img_att.resize((40, 40), PIL.Image.ANTIALIAS)
         self.photoimgatt = ImageTk.PhotoImage(img_att)
         att_img = Label(att_frame, image=self.photoimgatt, bg="#28b779")
-        att_img.place(x=20, y=40, width=50, height=50)
-        att_text = Label(att_frame, text="Số bản điểm danh", font=("times new roman", 20, "bold"), fg="white",
+        att_img.place(x=20, y=40, width=40, height=40)
+        att_text = Label(att_frame, text="Số bản điểm danh", font=("times new roman", 18, "bold"), fg="white",
                              bg="#28b779")
-        att_text.place(x=100, y=30)
+        att_text.place(x=90, y=30)
         att_text = Label(att_frame, textvariable=self.att, font=("times new roman", 16, "bold"), fg="white",
                              bg="#28b779")
-        att_text.place(x=100, y=70)
+        att_text.place(x=90, y=70)
 
         #late_attendance
         late_frame = LabelFrame(Top_frame, bd=1, bg='#852b99')
-        late_frame.place(x=745, y=0, width=355, height=120)
+        late_frame.place(x=640, y=0, width=280, height=100)
 
         img_late = PIL.Image.open(r"ImageFaceDetect\late.png")
         # img_student = img_student.resize((50, 50), PIL.Image.ANTIALIAS)
@@ -135,7 +135,7 @@ class Report:
 
         #no_attendance
         late_frame = LabelFrame(Top_frame, bd=1, bg='#DC143C')
-        late_frame.place(x=1115, y=0, width=355, height=120)
+        late_frame.place(x=960, y=0, width=260, height=100)
 
         img_noatt = PIL.Image.open(r"ImageFaceDetect\vang.png")
         # img_student = img_student.resize((50, 50), PIL.Image.ANTIALIAS)
@@ -152,10 +152,10 @@ class Report:
         #====================Left_label====================
         Left_frame = LabelFrame(main_frame, bd=2, bg="white",
                                font=("times new roman", 12, "bold"))
-        Left_frame.place(x=10, y=125, width=725, height=560)
+        Left_frame.place(x=10, y=125, width=630, height=450)
         #topleft
         late_group=LabelFrame(Left_frame,bd=1,bg="white",text="Sinh viên đi muộn",font=("times new roman", 11, "bold"),fg="black",relief=RIDGE)
-        late_group.place(x=0,y=0,width=720,height=270)
+        late_group.place(x=0,y=0,width=620,height=250)
 
         self.var_com_searchlate = StringVar()
         search_combo = ttk.Combobox(late_group, font=("times new roman", 12, "bold"),
@@ -190,7 +190,7 @@ class Report:
 
         # table_frame
         tabletc_frame = Frame(late_group, bd=2, relief=RIDGE, bg="white")
-        tabletc_frame.place(x=10, y=38, width=695, height=205)
+        tabletc_frame.place(x=10, y=38, width=600, height=180)
 
         # scroll bar
         scroll_x = ttk.Scrollbar(tabletc_frame, orient=HORIZONTAL)
@@ -227,7 +227,7 @@ class Report:
         #===========under-left===============
         noatt_group = LabelFrame(Left_frame, bd=1, bg="white", text="Sinh viên vắng",
                                 font=("times new roman", 11, "bold"), fg="black", relief=RIDGE)
-        noatt_group.place(x=0, y=275, width=720, height=270)
+        noatt_group.place(x=0, y=250, width=620, height=200)
 
         self.var_com_searchnoatt = StringVar()
         search_combo = ttk.Combobox(noatt_group, font=("times new roman", 12, "bold"),
@@ -262,7 +262,7 @@ class Report:
 
         # table_frame
         tableatt_frame = Frame(noatt_group, bd=2, relief=RIDGE, bg="white")
-        tableatt_frame.place(x=10, y=38, width=695, height=205)
+        tableatt_frame.place(x=10, y=38, width=600, height=140)
 
         # scroll bar
         scroll_x = ttk.Scrollbar(tableatt_frame, orient=HORIZONTAL)
@@ -299,7 +299,7 @@ class Report:
         #===================right_label====================
         Right_frame = LabelFrame(main_frame, bd=2, bg="white",
                                 font=("times new roman", 12, "bold"))
-        Right_frame.place(x=750, y=125, width=725, height=560)
+        Right_frame.place(x=650, y=125, width=590, height=500)
 
         noatt_lbl = Label(Right_frame, bd=0, bg="white", text="Sinh viên không điểm danh", font=("yu gothic ui", 14, "bold"),
                          fg="red2", )
@@ -341,7 +341,7 @@ class Report:
 
         # table_frame
         tablenotin_frame = Frame(notinGroup, bd=2, relief=RIDGE, bg="white")
-        tablenotin_frame.place(x=10, y=38, width=700, height=485)
+        tablenotin_frame.place(x=10, y=38, width=580, height=370)
 
         # scroll bar
         scroll_x = ttk.Scrollbar(tablenotin_frame, orient=HORIZONTAL)

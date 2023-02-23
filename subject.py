@@ -57,15 +57,17 @@ class Subject:
         lbl1.place(x=80, y=60, width=100, height=20)
 
         #====title=========
-        self.txt = "Quản lý thông tin môn học"
-        self.count = 0
-        self.text = ''
-        self.color = ["#4f4e4d", "#f29844", "red2"]
-        self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 28, "bold"), bg="white", fg="black",
-                             bd=5, relief=FLAT)
-        self.heading.place(x=400, y=22, width=650)
-        self.slider()
-        self.heading_color()
+        # self.txt = "Quản lý thông tin môn học"
+        # self.count = 0
+        # self.text = ''
+        # self.color = ["#4f4e4d", "#f29844", "red2"]
+        # self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 28, "bold"), bg="white", fg="black",
+        #                      bd=5, relief=FLAT)
+        # self.heading.place(x=400, y=22, width=650)
+        # self.slider()
+        # self.heading_color()
+        lbl_main = Label(text="Quản lý thông tin môn học", font=("times new roman", 26,"bold"),bg="white", fg="red")
+        lbl_main.place(x=360, y=22, width=500)
 
         main_frame = Frame(bg_img, bd=2, bg="white")
         main_frame.place(x=23, y=80, width=1230, height=600)
@@ -74,14 +76,14 @@ class Subject:
         self.getNextid()
         Left_frame = LabelFrame(main_frame, bd=2, bg="white", relief=RIDGE,
                                 font=("times new roman", 12, "bold"))
-        Left_frame.place(x=20, y=5, width=1435, height=320)
+        Left_frame.place(x=20, y=5, width=1200, height=280)
 
         label_Update_att = Label(Left_frame, bg="white", fg="red2", text="Thông tin môn học",
                                  font=("yu gothic ui", 16, "bold"))
         label_Update_att.place(x=0, y=1, width=450, height=42)
 
         left_inside_frame = Frame(Left_frame, bd=1, bg="white")
-        left_inside_frame.place(x=0, y=60, width=1380, height=250)
+        left_inside_frame.place(x=0, y=60, width=1200, height=250)
 
         # id
         auttendanceID_label = Label(left_inside_frame, text="ID Môn học:",font=("times new roman", 12, "bold"),
@@ -89,7 +91,7 @@ class Subject:
         auttendanceID_label.grid(row=0, column=0, padx=50, pady=10, sticky=W)
 
         auttendanceID_entry = ttk.Entry(left_inside_frame, state="disabled", textvariable=self.var_subid,
-                                        font=("times new roman", 12, "bold"),width=22)
+                                        font=("times new roman", 12, "bold"),width=18)
         auttendanceID_entry.grid(row=0, column=1, padx=20, pady=10, sticky=W)
 
         # subject
@@ -97,7 +99,7 @@ class Subject:
                            bg="white")
         roll_label.grid(row=1, column=0, padx=50, pady=10, sticky=W)
 
-        roll_entry = ttk.Entry(left_inside_frame, width=22, textvariable=self.var_subname,
+        roll_entry = ttk.Entry(left_inside_frame, width=18, textvariable=self.var_subname,
                                font=("times new roman", 12, "bold"))
         roll_entry.grid(row=1, column=1, padx=20, pady=10, sticky=W)
 
@@ -106,7 +108,7 @@ class Subject:
                           bg="white")
         nameLabel.grid(row=2, column=0, padx=50, pady=10, sticky=W)
 
-        nameLabel_entry = ttk.Entry(left_inside_frame, width=22, textvariable=self.var_subclass,
+        nameLabel_entry = ttk.Entry(left_inside_frame, width=18, textvariable=self.var_subclass,
                                     font=("times new roman", 12, "bold"))
         nameLabel_entry.grid(row=2, column=1, padx=20, pady=10, sticky=W)
 
@@ -117,51 +119,51 @@ class Subject:
         # =====btn_frame============
 
         btn_frame = Frame(left_inside_frame, bg="white")
-        btn_frame.place(x=30, y=150, width=440, height=115)
+        btn_frame.place(x=30, y=130, width=440, height=100)
 
         add_btn = Button(btn_frame, text="Thêm mới", command=self.add_data, font=("times new roman", 13, "bold"),
-                            bg="#38a6f0", fg="white", width=17)
+                            bg="#38a6f0", fg="white", width=15)
         add_btn.grid(row=9, column=0, pady=5,padx=20)
 
         delete_btn = Button(btn_frame, text="Xóa", command=self.delete_data,
                             font=("times new roman", 13, "bold"),
-                            bg="#38a6f0", fg="white", width=17)
+                            bg="#38a6f0", fg="white", width=15)
         delete_btn.grid(row=9, column=1, pady=5,padx=20)
 
         update_btn = Button(btn_frame, text="Cập nhật", command=self.update_data, font=("times new roman", 13, "bold"),
-                            bg="#38a6f0", fg="white", width=17)
+                            bg="#38a6f0", fg="white", width=15)
         update_btn.grid(row=10, column=0, pady=5, padx=5)
 
         reset_btn = Button(btn_frame, text="Làm mới", command=self.reset_data, font=("times new roman", 13, "bold"),
-                           bg="#38a6f0", fg="white", width=17)
+                           bg="#38a6f0", fg="white", width=15)
         reset_btn.grid(row=10, column=1, pady=5,padx=5)
 
         # ==================right_ label========================
         Right_frame = LabelFrame(Left_frame, bg="white",bd=0,
                                  font=("times new roman", 12, "bold"))
-        Right_frame.place(x=530, y=5, width=850, height=300)
+        Right_frame.place(x=530, y=5, width=800, height=260)
 
         # search
         self.var_com_search = StringVar()
         search_label = Label(Right_frame, text="Tìm kiếm theo :", font=("times new roman", 13, "bold"),
                              bg="white")
-        search_label.grid(row=0, column=0, padx=15, pady=0, sticky=W)
+        search_label.grid(row=0, column=0, padx=10, pady=0, sticky=W)
 
         search_combo = ttk.Combobox(Right_frame, font=("times new roman", 13, "bold"), textvariable=self.var_com_search,
                                     state="read only",
-                                    width=13)
+                                    width=10)
         search_combo["values"] = ("ID Môn học", "Tên môn học", "Lớp tín chỉ")
         search_combo.current(0)
         search_combo.grid(row=0, column=1, padx=2, pady=15, sticky=W)
 
         self.var_search = StringVar()
-        search_entry = ttk.Entry(Right_frame, textvariable=self.var_search, width=15,
+        search_entry = ttk.Entry(Right_frame, textvariable=self.var_search, width=10,
                                  font=("times new roman", 13, "bold"))
         search_entry.grid(row=0, column=2, padx=15, pady=5, sticky=W)
 
         search_btn = Button(Right_frame, command=self.search_data, text="Tìm kiếm",
                             font=("times new roman", 13, "bold"), bg="#38a6f0", fg="white",
-                            width=12)
+                            width=10)
         search_btn.grid(row=0, column=3, padx=15)
 
 
@@ -169,12 +171,12 @@ class Subject:
         showAll_btn = Button(Right_frame, text="Xem tất cả", command=self.fetch_data,
                              font=("times new roman", 13, "bold"), bg="#38a6f0",
                              fg="white",
-                             width=12)
+                             width=10)
         showAll_btn.grid(row=0, column=5, padx=15)
 
         # table_frame
         table_frame = Frame(Right_frame, bd=2, relief=RIDGE, bg="white")
-        table_frame.place(x=85, y=55, width=600, height=233)
+        table_frame.place(x=50, y=55, width=600, height=233)
 
         # scroll bar
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
@@ -206,23 +208,23 @@ class Subject:
         #=============================UNDER_LEFT============================
         Underleft_frame = LabelFrame(main_frame, bd=2, bg="white", relief=RIDGE,
                                 )
-        Underleft_frame.place(x=20, y=335, width=710, height=320)
+        Underleft_frame.place(x=20, y=300, width=615, height=300)
 
         label_teachersb = Label(Underleft_frame, bg="white", fg="red2", text="Môn học của giảng viên",
                                  font=("yu gothic ui", 14, "bold"))
-        label_teachersb.place(x=0, y=1, width=700, height=35)
+        label_teachersb.place(x=0, y=1, width=605, height=35)
 
         # search
         self.var_com_searchtc = StringVar()
         search_combo = ttk.Combobox(Underleft_frame, font=("times new roman", 12, "bold"), textvariable=self.var_com_searchtc,
                                     state="read only",
-                                    width=12)
+                                    width=11)
         search_combo["values"] = ("ID Giảng viên", "ID môn học")
         search_combo.current(0)
         search_combo.grid(row=0, column=0, padx=10, pady=40, sticky=W)
 
         self.var_searchtc = StringVar()
-        searchtc_entry = ttk.Entry(Underleft_frame, textvariable=self.var_searchtc, width=13,
+        searchtc_entry = ttk.Entry(Underleft_frame, textvariable=self.var_searchtc, width=11,
                                  font=("times new roman", 11, "bold"))
         searchtc_entry.grid(row=0, column=1, padx=5, pady=35, sticky=W)
 
@@ -241,66 +243,66 @@ class Subject:
         self.var_teachersub.trace("w", lambda name, index, mode, var_teachersub=self.var_teachersub: self.callback())
         teacherid_label = Label(Underleft_frame, text="ID Giảng viên:", font=("times new roman", 12, "bold"),
                                     bg="white",width=12)
-        teacherid_label.place(x=20, y=120, width=100)
+        teacherid_label.place(x=15, y=90, width=80)
 
         teacherid_entry = ttk.Entry(Underleft_frame, textvariable=self.var_teachersub,
-                                        font=("times new roman", 12, "bold"), width=20)
-        teacherid_entry.place(x=130, y=120, width=100)
+                                        font=("times new roman", 12, "bold"), width=18)
+        teacherid_entry.place(x=120, y=90, width=100)
 
         #teacher_name
         self.var_teachername=StringVar()
         teachernLabel = Label(Underleft_frame, text="Tên GV:", font=("times new roman", 12, "bold"),
                               bg="white")
-        teachernLabel.place(x=240, y=120,width=60)
+        teachernLabel.place(x=240, y=90,width=60)
 
         teachernLabel_entry = ttk.Entry(Underleft_frame, width=20, textvariable=self.var_teachername,
                                         font=("times new roman", 12, "bold"), state="disabled")
-        teachernLabel_entry.place(x=310, y=120,width=160)
+        teachernLabel_entry.place(x=310, y=90,width=140)
 
         # subject
         self.var_subsub.trace("w", lambda name, index, mode, var_subsub=self.var_subsub: self.callsubtc())
         subsub_label = Label(Underleft_frame, text="ID môn học:", font=("times new roman", 12, "bold"),
                            bg="white")
-        subsub_label.place(x=12, y=165, width=100)
+        subsub_label.place(x=5, y=130, width=100)
 
         subsub_entry = ttk.Entry(Underleft_frame, width=22, textvariable=self.var_subsub,
                                font=("times new roman", 12, "bold"))
-        subsub_entry.place(x=130, y=165, width=100)
+        subsub_entry.place(x=120, y=130, width=100)
 
         #sub_name
         self.var_subjectname = StringVar()
         subjectnameLabel = Label(Underleft_frame, text="Tên MH:", font=("times new roman", 12, "bold"),
                                  bg="white")
-        subjectnameLabel.place(x=240, y=165,width=60)
+        subjectnameLabel.place(x=240, y=130,width=60)
 
         subjectnameLabel_entry = ttk.Entry(Underleft_frame, width=22, textvariable=self.var_subjectname,
                                            font=("times new roman", 12, "bold"), state="disabled")
-        subjectnameLabel_entry.place(x=310, y=165,width=160)
+        subjectnameLabel_entry.place(x=310, y=130,width=140)
 
         #btn_frameteacher
         btn_frametc = Frame(Underleft_frame, bg="white",bd=2,relief=RIDGE)
-        btn_frametc.place(x=20, y=245, width=455, height=55)
+        btn_frametc.place(x=20, y=190, width=420, height=55)
 
         addTc_btn = Button(btn_frametc, text="Thêm mới", command=self.add_Tcdata, font=("times new roman", 12, "bold"),
-                         bg="#fbd568", fg="#996319", width=10)
+                         bg="#fbd568", fg="#996319", width=9)
         addTc_btn.grid(row=9, column=0, pady=10, padx=5)
 
         deleteTc_btn = Button(btn_frametc, text="Xóa", command=self.delete_Tcdata,
                             font=("times new roman", 12, "bold"),
-                            bg="#fbd568", fg="#996319", width=10)
+                            bg="#fbd568", fg="#996319", width=9)
         deleteTc_btn.grid(row=9, column=1, pady=10, padx=5)
 
         updateTc_btn = Button(btn_frametc, text="Cập nhật", command=self.update_Tcdata, font=("times new roman", 12, "bold"),
-                            bg="#fbd568", fg="#996319", width=10)
+                            bg="#fbd568", fg="#996319", width=9)
         updateTc_btn.grid(row=9, column=2, pady=10, padx=5)
 
         resetTc_btn = Button(btn_frametc, text="Làm mới", command=self.reset_Tcdata, font=("times new roman", 12, "bold"),
-                           bg="#fbd568", fg="#996319", width=10)
+                           bg="#fbd568", fg="#996319", width=8)
         resetTc_btn.grid(row=9, column=3, pady=10, padx=5)
 
         # table_frame
         tabletc_frame = Frame(Underleft_frame, bd=2, relief=RIDGE, bg="white")
-        tabletc_frame.place(x=490, y=40, width=200, height=260)
+        tabletc_frame.place(x=465, y=40, width=140, height=210)
 
         # scroll bar
         scroll_x = ttk.Scrollbar(tabletc_frame, orient=HORIZONTAL)
@@ -331,24 +333,24 @@ class Subject:
         #==================Under_right==================
         Underright_frame = LabelFrame(main_frame, bd=2, bg="white", relief=RIDGE,
                                      font=("yu gothic ui", 12, "bold"))
-        Underright_frame.place(x=740, y=335, width=715, height=320)
+        Underright_frame.place(x=640, y=300, width=590, height=300)
 
         label_studentsb = Label(Underright_frame, bg="white", fg="red2", text="Môn học của sinh viên",
                                 font=("yu gothic ui", 14, "bold"))
-        label_studentsb.place(x=0, y=1, width=700, height=35)
+        label_studentsb.place(x=0, y=1, width=600, height=35)
 
         # search
         self.var_com_searchstd = StringVar()
         search_combo = ttk.Combobox(Underright_frame, font=("times new roman", 12, "bold"),
                                     textvariable=self.var_com_searchstd,
                                     state="read only",
-                                    width=12)
+                                    width=10)
         search_combo["values"] = ("ID Sinh viên", "ID môn học")
         search_combo.current(0)
         search_combo.grid(row=0, column=0, padx=10, pady=40, sticky=W)
 
         self.var_searchstd = StringVar()
-        searchstd_entry = ttk.Entry(Underright_frame, textvariable=self.var_searchstd, width=13,
+        searchstd_entry = ttk.Entry(Underright_frame, textvariable=self.var_searchstd, width=10,
                                    font=("times new roman", 11, "bold"))
         searchstd_entry.grid(row=0, column=1, padx=5, pady=35, sticky=W)
 
@@ -367,68 +369,68 @@ class Subject:
         self.var_studentsub.trace("w", lambda name, index, mode, var_studentsub=self.var_studentsub: self.callstudent())
         studentid_label = Label(Underright_frame, text="ID Sinh viên:", font=("times new roman", 12, "bold"),
                                 bg="white", width=12)
-        studentid_label.place(x=20, y=120, width=100)
+        studentid_label.place(x=10, y=90, width=100)
 
         studentid_entry = ttk.Entry(Underright_frame, textvariable=self.var_studentsub,
                                     font=("times new roman", 12, "bold"), width=20)
-        studentid_entry.place(x=130, y=120, width=100)
+        studentid_entry.place(x=120, y=90, width=100)
 
         #student_name
         self.var_studentname = StringVar()
         studentname_label = Label(Underright_frame, text="Tên SV:", font=("times new roman", 12, "bold"),
                                 bg="white", width=12)
-        studentname_label.place(x=240, y=120, width=60)
+        studentname_label.place(x=240, y=90, width=60)
 
         studentname_entry = ttk.Entry(Underright_frame, textvariable=self.var_studentname,
                                     font=("times new roman", 12, "bold"), width=12,state="disabled")
-        studentname_entry.place(x=310, y=120, width=160)
+        studentname_entry.place(x=310, y=90, width=130)
 
         # subject
         self.var_subsubst.trace("w", lambda name, index, mode, var_subsubst=self.var_subsubst: self.callstSub())
         subsub_label = Label(Underright_frame, text="ID Môn học:", font=("times new roman", 12, "bold"),
                              bg="white")
-        subsub_label.place(x=13, y=165, width=100)
+        subsub_label.place(x=10, y=130, width=100)
 
         subsub_entry = ttk.Entry(Underright_frame, width=22, textvariable=self.var_subsubst,
                                  font=("times new roman", 12, "bold"))
-        subsub_entry.place(x=130, y=165, width=100)
+        subsub_entry.place(x=120, y=130, width=100)
 
         # subject_name
         self.var_stSubname = StringVar()
         studentname_label = Label(Underright_frame, text="Tên MH:", font=("times new roman", 12, "bold"),
                                   bg="white", width=12)
-        studentname_label.place(x=240, y=165, width=60)
+        studentname_label.place(x=240, y=130, width=60)
 
         studentname_entry = ttk.Entry(Underright_frame, textvariable=self.var_stSubname,
                                       font=("times new roman", 12, "bold"), width=12, state="disabled")
-        studentname_entry.place(x=310, y=165, width=160)
+        studentname_entry.place(x=310, y=130, width=130)
 
         # btn_frameteacher
         btn_framestd = Frame(Underright_frame, bg="white", bd=2, relief=RIDGE)
-        btn_framestd.place(x=20, y=245, width=455, height=55)
+        btn_framestd.place(x=20, y=190, width=420, height=55)
 
         addTc_btn = Button(btn_framestd, text="Thêm mới", command=self.add_Stddata, font=("times new roman", 12, "bold"),
-                           bg="#fbd568", fg="#996319", width=10)
+                           bg="#fbd568", fg="#996319", width=9)
         addTc_btn.grid(row=9, column=0, pady=10, padx=5)
 
         deleteTc_btn = Button(btn_framestd, text="Xóa", command=self.delete_Stddata,
                               font=("times new roman", 12, "bold"),
-                              bg="#fbd568", fg="#996319", width=10)
+                              bg="#fbd568", fg="#996319", width=9)
         deleteTc_btn.grid(row=9, column=1, pady=10, padx=5)
 
         updateTc_btn = Button(btn_framestd, text="Cập nhật", command=self.update_Stddata,
                               font=("times new roman", 12, "bold"),
-                              bg="#fbd568", fg="#996319", width=10)
+                              bg="#fbd568", fg="#996319", width=9)
         updateTc_btn.grid(row=9, column=2, pady=10, padx=5)
 
         resetTc_btn = Button(btn_framestd, text="Làm mới", command=self.reset_Stddata,
                              font=("times new roman", 12, "bold"),
-                             bg="#fbd568", fg="#996319", width=10)
+                             bg="#fbd568", fg="#996319", width=9)
         resetTc_btn.grid(row=9, column=3, pady=10, padx=5)
 
         # table_frame
         tablestd_frame = Frame(Underright_frame, bd=2, relief=RIDGE, bg="white")
-        tablestd_frame.place(x=490, y=40, width=200, height=260)
+        tablestd_frame.place(x=460, y=40, width=130, height=200)
 
         # scroll bar
         scroll_x = ttk.Scrollbar(tablestd_frame, orient=HORIZONTAL)
@@ -447,8 +449,8 @@ class Subject:
         self.StudentTable.heading("subid", text="ID Môn học")
 
         self.StudentTable["show"] = "headings"
-        self.StudentTable.column("studentid", width=80)
-        self.StudentTable.column("subid", width=80)
+        self.StudentTable.column("studentid", width=60)
+        self.StudentTable.column("subid", width=60)
 
         self.StudentTable.pack(fill=BOTH, expand=1)
         self.StudentTable.bind("<ButtonRelease>", self.get_cursorStd)
