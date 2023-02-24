@@ -67,18 +67,24 @@ class Attendance:
         lbl1.place(x=80, y=60, width=100, height=20)
 
         # ====title=========
-        self.txt = "Quản lý thông tin điểm danh"
-        self.count = 0
-        self.text = ''
-        self.color = ["#4f4e4d", "#f29844", "red2"]
-        self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 28, "bold"), bg="white", fg="black",
-                             bd=5, relief=FLAT)
-        self.heading.place(x=400, y=22, width=650)
-        self.slider()
-        self.heading_color()
+        # self.txt = "Quản lý thông tin điểm danh"
+        # self.count = 0
+        # self.text = ''
+        # self.color = ["#4f4e4d", "#f29844", "red2"]
+        # self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 28, "bold"), bg="white", fg="black",
+        #                      bd=5, relief=FLAT)
+        # self.heading.place(x=400, y=22, width=650)
+        # self.slider()
+        # self.heading_color()
+
+        # main_frame = Frame(bg_img, bd=2, bg="white")
+        # main_frame.place(x=18, y=80, width=1240, height=560)
+
+        lbl_main = Label(text="Quản lý thông tin điểm danh", font=("times new roman", 26,"bold"),bg="white", fg="red")
+        lbl_main.place(x=360, y=22, width=500)
 
         main_frame = Frame(bg_img, bd=2, bg="white")
-        main_frame.place(x=18, y=80, width=1240, height=560)
+        main_frame.place(x=23, y=80, width=1230, height=600)
 
         # left_label
         Left_frame = LabelFrame(main_frame, bd=2, bg="white", relief=RIDGE,

@@ -36,7 +36,8 @@ class Face_Recognition_System:
         new_tcid(value_from_p1)
         #background
         print(value_from_p1)
-        img3 = PIL.Image.open(r"ImageFaceDetect\bgbtn.png")
+        img3 = PIL.Image.open(r"ImageFaceDetect\bg2.png")
+        # img3 = PIL.Image.open(r"ImageFaceDetect\bg_main.png")
         img3 = img3.resize((1280, 650), PIL.Image.Resampling.LANCZOS)
         self.photoimg3 = ImageTk.PhotoImage(img3)
 
@@ -61,7 +62,7 @@ class Face_Recognition_System:
         lbl1.place(x=80, y=60, width=100, height=20)
 
         #====title=========
-        self.txt = "Hệ thống nhận diện khuôn mặt"
+        # self.txt = "Hệ thống nhận diện khuôn mặt"
         # self.count = 0
         # self.text = ''
         # self.color = ["#4f4e4d", "#f29844", "red2"]
@@ -70,8 +71,13 @@ class Face_Recognition_System:
         # self.heading.place(x=360, y=22, width=500)
         # self.slider()
         # self.heading_color()
-        lbl_main = Label(text="Hệ thống nhận diện khuôn mặt", font=("times new roman", 26,"bold"),bg="white", fg="red")
+        # lbl_main = Label(text="Hệ thống nhận diện khuôn mặt", font=("times new roman", 26,"bold"),bg="white", fg="red")
+        # lbl_main.place(x=360, y=22, width=500)
+        lbl_main = Label(text="Hệ thống điểm danh sinh viên", font=("times new roman", 26,"bold"),bg="white", fg="red")
         lbl_main.place(x=360, y=22, width=500)
+
+        main_frame = Frame(bg_img, bd=2, bg="white")
+        main_frame.place(x=20, y=85, width=1230, height=550)
         #=========account===========
         #===get email from db=============
         self.account=""
@@ -108,7 +114,7 @@ class Face_Recognition_System:
         b1_1 = Button(self.root, text="Đăng xuất", cursor="hand2", command=self.exit,
                       font=("times new roman", 13, "bold"),
                       bg="white", fg="black",borderwidth=0)
-        b1_1.place(x=1380, y=48, width=100, height=27)
+        b1_1.place(x=1180, y=48, width=80, height=35)
 
 
         #=============Button================

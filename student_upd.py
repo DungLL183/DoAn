@@ -99,7 +99,7 @@ class Student:
         dep_label.grid(row=0,column=0,padx=10,sticky=W)
 
         dep_combo=ttk.Combobox(current_course_frame,textvariable=self.var_dep,font=("times new roman",13,"bold"),state="readonly",width=15)
-        dep_combo["values"]=("Chọn chuyên ngành","Điện tử viễn thông","IT","Cơ khí","Điện","Kế toán","Tự động hóa")
+        dep_combo["values"]=("Chọn chuyên ngành","Điện tử viễn thông","IT","Công nghệ ô tô","Thương mại điện tử","Quản trị văn phòng","Tự động hóa")
         dep_combo.current(0)
         dep_combo.grid(row=0,column=1,padx=2,pady=10,sticky=W)
 
@@ -119,7 +119,7 @@ class Student:
 
         year_combo = ttk.Combobox(current_course_frame,textvariable=self.var_year, font=("times new roman", 13, "bold"), state="readonly",
                                     width=15)
-        year_combo["values"] = ("Chọn năm học", "2020-21", "2021-22", "2022-23", "2023-24")
+        year_combo["values"] = ("Chọn năm học", "2018-2019", "2019-2020", "2020-2021", "2021-2022", "2022-2023")
         year_combo.current(0)
         year_combo.grid(row=1, column=1, padx=2, pady=10, sticky=W)
 

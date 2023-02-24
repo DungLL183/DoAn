@@ -17,25 +17,25 @@ class Train:
                           font=("times new roman", 25, "bold"), bg="darkblue", fg="white")
         title_lbl.place(x=0, y=0, width=1530, height=45)
 
-        img4 = PIL.Image.open(r"ImageFaceDetect\nhandien.png")
-        img4 = img4.resize((1530, 325), PIL.Image.ANTIALIAS)
+        img4 = PIL.Image.open(r"ImageFaceDetect\train2.png")
+        img4 = img4.resize((900, 325), PIL.Image.ANTIALIAS)
         self.photoimg4 = ImageTk.PhotoImage(img4)
 
         f_lbl = Label(self.root, image=self.photoimg4)
-        f_lbl.place(x=0, y=55, width=1530, height=325)
+        f_lbl.place(x=200, y=55, width=900, height=300)
 
         #Btn Train
         b1_1 = Button(self.root, text="TRAIN DATA", cursor="hand2", command=self.train_classifier,
                       font=("times new roman", 25, "bold"), bg="RED", fg="white")
-        b1_1.place(x=0, y=380, width=1530, height=60)
+        b1_1.place(x=200, y=360, width=900, height=60)
 
 
-        img5 = PIL.Image.open(r"ImageFaceDetect\nhandien.png")
-        img5 = img5.resize((1530, 325), PIL.Image.ANTIALIAS)
+        img5 = PIL.Image.open(r"ImageFaceDetect\train1.png")
+        img5 = img5.resize((900, 325), PIL.Image.ANTIALIAS)
         self.photoimg5 = ImageTk.PhotoImage(img5)
 
         f_lbl = Label(self.root, image=self.photoimg5)
-        f_lbl.place(x=0, y=440, width=1530, height=325)
+        f_lbl.place(x=200, y=430, width=900, height=300)
 
     def train_classifier(self):
         data_dir=("data")
