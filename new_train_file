@@ -10,7 +10,7 @@ neg_images = [neg_path + i for i in os.listdir(neg_path)]
 
 # create a list of labels for the positive and negative images
 pos_labels = [1] * len(pos_images)
-neg_path = [0] * len(neg_images)
+neg_labels = [0] * len(neg_images)
 
 # combien the positive and negative images and labels into a single dataset
 images = pos_images + neg_images
