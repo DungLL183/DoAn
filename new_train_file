@@ -105,3 +105,66 @@ np.save('train_data.npy', train_data)
 in this code, we first define the directories for positive and negative training data. we then use "read_images" funtion to read the images from directories 
 and convert tem to grayscale. we apply the lbph algorithm on the grayscale images using the "cv2.face.LBPHFaceRecognizer" method and store the result in the respective list
 finally we concatenate the positive and negative training data lists and save the result to a file using the "np.save" method
+
+
+==================================================================================== ANOTHER =========================================================================
+import cv2
+import numpy as np 
+
+# Prepare the data
+positive_images = []
+negative_images = []
+positive_labels = []
+negative_labels = [] 
+
+# Load and label the positive images
+# ... 
+# Load and label the negative images
+# ... 
+
+# Split the data into training and testing sets
+X_train = np.concatenate((positive_images[:80], negative_images[:80]), axis=0)
+X_test = np.concatenate((positive_images[80:], negative_images[80:]), axis=0)
+y_train = np.concatenate((positive_labels[:80], negative_labels[:80]), axis=0)
+y_test = np.concatenate((positive_labels[80:], negative_labels[80:]), axis=0) 
+
+# Train the classifier
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+lbph_face_recognizer = cv2.face.LBPHFaceRecognizer_create() 
+
+# Convert the images to grayscale
+gray_train = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in X_train]
+gray_test = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in X_test] 
+
+# Train the Haar Cascade classifier
+face_samples = []
+for img in gray_train:
+    faces = face_cascade.detectMultiScale(img, scaleFactor=1.1, minNeighbors=5)
+    for (x, y, w, h) in faces:
+        face_roi = img[y:y+h, x:x+w]
+        face_samples.append(face_roi) face_labels = np.array(y_train)
+face_cascade.train(face_samples, face_labels) 
+
+# Train the LBPH face recognizer
+lbph_face_recognizer.train(gray_train, np.array(y_train)) 
+
+# Save the trained classifiers
+face_cascade.save('face_cascade.xml')
+lbph_face_recognizer.save('lbph_face_recognizer.xml') 
+
+# Test the classifier
+face_cascade.load('face_cascade.xml')
+lbph_face_recognizer.load('lbph_face_recognizer.xml') 
+
+# Evaluate the performance of the classifier
+correct = 0
+total = 0
+for i, img in enumerate(gray_test):
+    faces = face_cascade.detectMultiScale(img, scaleFactor=1.1, minNeighbors=5)
+    for (x, y, w, h) in faces:
+        face_roi = img[y:y+h, x:x+w]
+        label, confidence = lbph_face_recognizer.predict(face_roi)
+        if label == y_test[i]:
+            correct += 1
+        total += 1 accuracy = correct / total
+print("Accuracy:", accuracy)
