@@ -651,8 +651,7 @@ class Student:
         self.getNextid()
     def search_data(self):
             if self.var_com_search.get() == "" or self.var_search.get() == "":
-                messagebox.showerror("Lỗi !", "Vui lòng nhập thông tin đầy đủ",parent=self.root)
-
+                messagebox.showerror("Lỗi !", "Vui lòng nhập thông tin sinh viên",parent=self.root)
             else:
                 try:
                     conn = mysql.connector.connect(host='localhost', user='root', password='',

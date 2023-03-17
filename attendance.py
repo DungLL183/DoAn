@@ -41,7 +41,7 @@ class Attendance:
         self.var_atten_lesson=StringVar()
 
         img3 = PIL.Image.open(r"ImageFaceDetect\bgnt.png")
-        img3 = img3.resize((1280, 650), PIL.Image.ANTIALIAS)
+        img3 = img3.resize((1280, 650), PIL.Image.Resampling.LANCZOS)
         self.photoimg3 = ImageTk.PhotoImage(img3)
 
         bg_img = Label(self.root, image=self.photoimg3)
@@ -50,7 +50,7 @@ class Attendance:
         # ==================================heading====================================
         # ====time====
         img_time = PIL.Image.open(r"ImageFaceDetect\timsearch50.png")
-        img_time = img_time.resize((27, 27), PIL.Image.ANTIALIAS)
+        img_time = img_time.resize((27, 27), PIL.Image.Resampling.LANCZOS)
         self.photoimgtime = ImageTk.PhotoImage(img_time)
         time_img = Label(self.root, image=self.photoimgtime, bg="white")
         time_img.place(x=43, y=40, width=27, height=27)

@@ -28,7 +28,7 @@ class Report:
         self.noatt=StringVar()
 
         img3 = PIL.Image.open(r"ImageFaceDetect\bg1.png")
-        img3 = img3.resize((1280, 650), PIL.Image.ANTIALIAS)
+        img3 = img3.resize((1280, 650), PIL.Image.Resampling.LANCZOS)
         self.photoimg3 = ImageTk.PhotoImage(img3)
 
         bg_img = Label(self.root, image=self.photoimg3)
@@ -98,7 +98,7 @@ class Report:
         student_frame.place(x=5,y=0,width=280,height=100)
 
         img_student = PIL.Image.open(r"ImageFaceDetect\sv.png")
-        # img_student = img_student.resize((50, 50), PIL.Image.ANTIALIAS)
+        # img_student = img_student.resize((50, 50), PIL.Image.Resampling.LANCZOS)
         self.photoimgsv = ImageTk.PhotoImage(img_student)
         student_img = Label(student_frame, image=self.photoimgsv, bg="#27a9e3")
         student_img.place(x=20, y=40, width=50, height=50)
@@ -112,7 +112,7 @@ class Report:
         att_frame.place(x=320, y=0, width=280, height=100)
 
         img_att = PIL.Image.open(r"ImageFaceDetect\sodd.png")
-        img_att = img_att.resize((40, 40), PIL.Image.ANTIALIAS)
+        img_att = img_att.resize((40, 40), PIL.Image.Resampling.LANCZOS)
         self.photoimgatt = ImageTk.PhotoImage(img_att)
         att_img = Label(att_frame, image=self.photoimgatt, bg="#28b779")
         att_img.place(x=20, y=40, width=40, height=40)
@@ -128,7 +128,7 @@ class Report:
         late_frame.place(x=640, y=0, width=280, height=100)
 
         img_late = PIL.Image.open(r"ImageFaceDetect\late.png")
-        # img_student = img_student.resize((50, 50), PIL.Image.ANTIALIAS)
+        # img_student = img_student.resize((50, 50), PIL.Image.Resampling.LANCZOS)
         self.photoimglate = ImageTk.PhotoImage(img_late)
         late_img = Label(late_frame, image=self.photoimglate, bg="#852b99")
         late_img.place(x=20, y=40, width=50, height=50)
@@ -144,7 +144,7 @@ class Report:
         late_frame.place(x=960, y=0, width=260, height=100)
 
         img_noatt = PIL.Image.open(r"ImageFaceDetect\vang.png")
-        # img_student = img_student.resize((50, 50), PIL.Image.ANTIALIAS)
+        # img_student = img_student.resize((50, 50), PIL.Image.Resampling.LANCZOS)
         self.photoimgnoatt = ImageTk.PhotoImage(img_noatt)
         noatt_img = Label(late_frame, image=self.photoimgnoatt, bg="#DC143C")
         noatt_img.place(x=20, y=40, width=50, height=50)

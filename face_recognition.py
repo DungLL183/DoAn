@@ -135,7 +135,7 @@ class Face_Recognition:
         #notify-attendance
         self.notify_frame = LabelFrame(Left_frame, bd=1, bg="white", relief=RIDGE,
                                        font=("times new roman", 11, "bold"))
-        self.notify_frame.place(x=8, y=550, width=600, height=60)
+        self.notify_frame.place(x=8, y=400, width=600, height=60)
         self.notify_label = Label(self.notify_frame, text="Thông báo: Vui lòng chọn Môn/ID Buổi học để mở Camera điểm danh !!!", font=("times new roman", 13, "bold"),
                              bg="white",fg="red")
         self.notify_label.grid(row=0, column=0, padx=10, pady=15, sticky=W)
@@ -302,8 +302,8 @@ class Face_Recognition:
             d1 = strftime("%d/%m/%Y")
             dtString = now.strftime("%H:%M:%S")
             ma="SV"+str(i)+d1+self.lessonid
-            masp=ma.replace("/","")
-            # print(masp)
+            maDiemDanh=ma.replace("/","")
+            # print(maDiemDanh)
             img_id+=1
 
             # kiểm tra xem sinh viên có trong ds lớp hay không
@@ -345,7 +345,7 @@ class Face_Recognition:
 
                                 my_cursor = conn.cursor()
                                 my_cursor.execute("insert into attendance values(%s,%s,%s,%s,%s,%s,%s,%s,%s)", (
-                                    masp,
+                                    maDiemDanh,
                                     str(i),
                                     n,
                                     d,
@@ -355,17 +355,17 @@ class Face_Recognition:
                                     self.lessonid,
                                     "",
                                 ))
-                                cv2.imwrite("DiemDanhImage\ " + masp + ".jpg",
+                                cv2.imwrite("DiemDanhImage\ " + maDiemDanh + ".jpg",
                                            face_cropped)
                                 #=============================Check_attendance===============================
 
-                                self.img_right = PIL.Image.open(r"DiemDanhImage\ " + masp + ".jpg")
-                                self.img_right = self.img_right.resize((190, 190), PIL.Image.Resampling.LANCZOS)
+                                self.img_right = PIL.Image.open(r"DiemDanhImage\ " + maDiemDanh + ".jpg")
+                                self.img_right = self.img_right.resize((100, 100), PIL.Image.Resampling.LANCZOS)
                                 self.photoimg_left = ImageTk.PhotoImage(self.img_right)
 
                                 self.f_lbl = Label(self.Right_frame, image=self.photoimg_left, bg="white", borderwidth=1,
                                                    relief="groove")
-                                self.f_lbl.place(x=110, y=10, width=190, height=190)
+                                self.f_lbl.place(x=110, y=10, width=100, height=100)
 
                                 # stdID
                                 self.studentID_label = Label(self.studentID_atten_info, text="ID Sinh Viên:",
@@ -452,12 +452,12 @@ class Face_Recognition:
                             att=[]
                             for ida in idatt:
                                 att.append(str(ida[0]))
-                            if(masp not in att):
+                            if(maDiemDanh not in att):
                                 if ((d1 not in a)) or ((self.lessonid not in b)):
 
                                     my_cursor = conn.cursor()
                                     my_cursor.execute("insert into attendance values(%s,%s,%s,%s,%s,%s,%s,%s,%s)", (
-                                        masp,
+                                        maDiemDanh,
                                         str(i),
                                         n,
                                         d,
@@ -467,18 +467,18 @@ class Face_Recognition:
                                         self.lessonid,
                                         "Có mặt",
                                     ))
-                                    cv2.imwrite("DiemDanhImage\ " + masp +"Ra"+ ".jpg",
+                                    cv2.imwrite("DiemDanhImage\ " + maDiemDanh +"Ra"+ ".jpg",
                                                 face_cropped)
                                     # =============================Check_attendance===============================
 
-                                    self.img_right = PIL.Image.open(r"DiemDanhImage\ " + masp +"Ra" +".jpg")
-                                    self.img_right = self.img_right.resize((190, 190), PIL.Image.Resampling.LANCZOS)
+                                    self.img_right = PIL.Image.open(r"DiemDanhImage\ " + maDiemDanh +"Ra" +".jpg")
+                                    self.img_right = self.img_right.resize((100, 100), PIL.Image.Resampling.LANCZOS)
                                     self.photoimg_left = ImageTk.PhotoImage(self.img_right)
 
                                     self.f_lbl = Label(self.Right_frame, image=self.photoimg_left, bg="white",
                                                        borderwidth=1,
                                                        relief="groove")
-                                    self.f_lbl.place(x=110, y=10, width=190, height=190)
+                                    self.f_lbl.place(x=110, y=10, width=100, height=100)
 
                                     # stdID
                                     self.studentID_label = Label(self.studentID_atten_info, text="ID Sinh Viên:",
@@ -562,25 +562,25 @@ class Face_Recognition:
 
                             else:
                                 my_cursor = conn.cursor()
-                                my_cursor.execute("select Time_out from attendance where IdAuttendance=%s",(masp,))
+                                my_cursor.execute("select Time_out from attendance where IdAuttendance=%s",(maDiemDanh,))
                                 timeout_check=my_cursor.fetchone()
                                 if(timeout_check[0]==None):
                                     my_cursor = conn.cursor()
                                     my_cursor.execute(
                                         "update  attendance set Time_out=%s where Student_id=%s and Lesson_id=%s",
                                         (dtString, str(i), (self.lessonid),))
-                                    cv2.imwrite("DiemDanhImage\ " + masp + "Ra" + ".jpg",
+                                    cv2.imwrite("DiemDanhImage\ " + maDiemDanh + "Ra" + ".jpg",
                                                 face_cropped)
                                     # =============================Check_attendance===============================
 
-                                    self.img_right = PIL.Image.open(r"DiemDanhImage\ " + masp + "Ra" + ".jpg")
-                                    self.img_right = self.img_right.resize((190, 190), PIL.Image.Resampling.LANCZOS)
+                                    self.img_right = PIL.Image.open(r"DiemDanhImage\ " + maDiemDanh + "Ra" + ".jpg")
+                                    self.img_right = self.img_right.resize((100, 100), PIL.Image.Resampling.LANCZOS)
                                     self.photoimg_left = ImageTk.PhotoImage(self.img_right)
 
                                     self.f_lbl = Label(self.Right_frame, image=self.photoimg_left, bg="white",
                                                        borderwidth=1,
                                                        relief="groove")
-                                    self.f_lbl.place(x=110, y=10, width=190, height=190)
+                                    self.f_lbl.place(x=110, y=10, width=100, height=100)
 
                                     # stdID
                                     self.studentID_label = Label(self.studentID_atten_info, text="ID Sinh Viên:",

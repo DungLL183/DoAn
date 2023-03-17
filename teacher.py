@@ -414,7 +414,6 @@ class Teacher:
     def search_data(self):
         if self.var_com_search.get()=="" or self.var_search.get()=="":
             messagebox.showerror("Lỗi !","Vui lòng nhập thông tin đầy đủ")
-
         else:
             try:
                 conn = mysql.connector.connect(host='localhost', user='root', password='',

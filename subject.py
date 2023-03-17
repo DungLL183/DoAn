@@ -652,7 +652,7 @@ class Subject:
 
     def search_data(self):
         if self.var_com_search.get()=="" or self.var_search.get()=="":
-            messagebox.showerror("Lỗi !","Vui lòng nhập thông tin đầy đủ")
+            messagebox.showerror("Lỗi !","Vui lòng nhập thông tin môn học")
 
         else:
             try:
@@ -908,7 +908,7 @@ class Subject:
 
     def search_Tcdata(self):
         if self.var_com_searchtc.get()=="" or self.var_searchtc.get()=="":
-            messagebox.showerror("Lỗi !","Vui lòng nhập thông tin đầy đủ")
+            messagebox.showerror("Lỗi !","Vui lòng nhập thông tin giảng viên")
 
         else:
             try:
@@ -1160,7 +1160,6 @@ class Subject:
     def search_Stddata(self):
             if self.var_com_searchstd.get() == "" or self.var_searchstd.get() == "":
                 messagebox.showerror("Lỗi !", "Vui lòng nhập thông tin đầy đủ")
-
             else:
                 try:
                     conn = mysql.connector.connect(host='localhost', user='root', password='',
@@ -1175,10 +1174,10 @@ class Subject:
                         self.var_com_searchstd.get()) + " Like '%" + str(self.var_searchstd.get()) + "%'")
                     data = my_cursor.fetchall()
                     if (len(data) != 0):
+                        messagebox.showinfo("Thông báo", "Có " + str(len(data)) + " bản ghi thỏa mãn điều kiện")
                         self.StudentTable.delete(*self.StudentTable.get_children())
                         for i in data:
                             self.StudentTable.insert("", END, values=i)
-                        messagebox.showinfo("Thông báo", "Có " + str(len(data)) + " bản ghi thỏa mãn điều kiện")
                         conn.commit()
                     else:
                         self.StudentTable.delete(*self.StudentTable.get_children())

@@ -44,7 +44,8 @@ class Train:
         faces=[]
         ids=[]
         for image in path:
-            img=PIL.Image.open(image).convert('L')
+            # img=PIL.Image.open(image).convert('L')
+            img=Image.open(image).convert('L')
             imageNp=np.array(img,'uint8')
             id=int(os.path.split(image)[1].split('.')[1])
             faces.append(imageNp)
