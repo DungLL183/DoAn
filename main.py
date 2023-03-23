@@ -77,7 +77,7 @@ class Face_Recognition_System:
         lbl_main.place(x=360, y=22, width=500)
 
         main_frame = Frame(bg_img, bd=2, bg="white")
-        main_frame.place(x=20, y=85, width=1230, height=550)
+        main_frame.place(x=20, y=20, width=1230, height=600)
         #=========account===========
         #===get email from db=============
         self.account=""
@@ -114,7 +114,7 @@ class Face_Recognition_System:
         b1_1 = Button(self.root, text="Đăng xuất", cursor="hand2", command=self.exit,
                       font=("times new roman", 13, "bold"),
                       bg="white", fg="black",borderwidth=0)
-        b1_1.place(x=1180, y=48, width=80, height=35)
+        b1_1.place(x=1150, y=42, width=80, height=35)
 
 
         #=============Button================
