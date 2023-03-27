@@ -208,45 +208,45 @@ class Teacher:
 
         # table_frame
         table_frame = Frame(Right_frame, bd=2, relief=RIDGE, bg="white")
-        table_frame.place(x=5, y=55, width=720, height=500)
+        table_frame.place(x=5, y=55, width=720, height=490)
 
         # scroll bar
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
 
-        self.AttendanceReportTable = ttk.Treeview(table_frame, column=(
+        self.TeacherTable = ttk.Treeview(table_frame, column=(
         "id", "name", "phone", "email", "quest", "answer", "pass"),
                                                   xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
 
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
-        scroll_x.config(command=self.AttendanceReportTable.xview)
-        scroll_y.config(command=self.AttendanceReportTable.yview)
+        scroll_x.config(command=self.TeacherTable.xview)
+        scroll_y.config(command=self.TeacherTable.yview)
 
-        self.AttendanceReportTable.heading("id", text="ID Giảng viên")
+        self.TeacherTable.heading("id", text="ID Giảng viên")
 
-        self.AttendanceReportTable.heading("name", text="Tên Giảng Viên")
-        self.AttendanceReportTable.heading("phone", text="SĐT")
-        self.AttendanceReportTable.heading("email", text="Email")
-        self.AttendanceReportTable.heading("quest", text="Câu hỏi bảo mật")
-        self.AttendanceReportTable.heading("answer", text="Trả lời")
-        self.AttendanceReportTable.heading("pass", text="Password")
-
-
-        self.AttendanceReportTable["show"] = "headings"
-
-        self.AttendanceReportTable.column("id", width=100)
-        self.AttendanceReportTable.column("name", width=100)
-        self.AttendanceReportTable.column("phone", width=100)
-        self.AttendanceReportTable.column("email", width=100)
-        self.AttendanceReportTable.column("quest", width=200)
-        self.AttendanceReportTable.column("answer", width=200)
-        self.AttendanceReportTable.column("pass", width=100)
+        self.TeacherTable.heading("name", text="Tên Giảng Viên")
+        self.TeacherTable.heading("phone", text="SĐT")
+        self.TeacherTable.heading("email", text="Email")
+        self.TeacherTable.heading("quest", text="Câu hỏi bảo mật")
+        self.TeacherTable.heading("answer", text="Trả lời")
+        self.TeacherTable.heading("pass", text="Password")
 
 
-        self.AttendanceReportTable.pack(fill=BOTH, expand=1)
+        self.TeacherTable["show"] = "headings"
 
-        self.AttendanceReportTable.bind("<ButtonRelease>", self.get_cursor)
+        self.TeacherTable.column("id", width=100)
+        self.TeacherTable.column("name", width=100)
+        self.TeacherTable.column("phone", width=100)
+        self.TeacherTable.column("email", width=100)
+        self.TeacherTable.column("quest", width=200)
+        self.TeacherTable.column("answer", width=200)
+        self.TeacherTable.column("pass", width=100)
+
+
+        self.TeacherTable.pack(fill=BOTH, expand=1)
+
+        self.TeacherTable.bind("<ButtonRelease>", self.get_cursor)
         self.fetch_data()  # load du lieu len grid
         # ================fetchData======================
 
@@ -287,8 +287,8 @@ class Teacher:
         # return  self.var_id
 
     def get_cursor(self,event=""):
-        cursor_row=self.AttendanceReportTable.focus()
-        content=self.AttendanceReportTable.item(cursor_row)
+        cursor_row=self.TeacherTable.focus()
+        content=self.TeacherTable.item(cursor_row)
         rows=content['values']
         self.var_id.set(rows[0])
         self.var_name.set(rows[1])
@@ -346,14 +346,14 @@ class Teacher:
             data = my_cursor.fetchall()
 
             if len(data) != 0:
-                self.AttendanceReportTable.delete(*self.AttendanceReportTable.get_children())
+                self.TeacherTable.delete(*self.TeacherTable.get_children())
                 for i in data:
-                    self.AttendanceReportTable.insert("", END, values=i)
+                    self.TeacherTable.insert("", END, values=i)
                     mydata.append(i)
                 conn.commit()
             conn.close()
     def update(self,rows):
-        self.AttendanceReportTable.delete(*self.AttendanceReportTable.get_children())
+        self.TeacherTable.delete(*self.TeacherTable.get_children())
     def update_data(self):
         if self.var_securityQ.get()=="Select" or self.var_id.get()=="" or self.var_name.get()=="":
             messagebox.showerror("Error","Vui lòng nhập đầy đủ thông tin",parent=self.root)
@@ -431,13 +431,13 @@ class Teacher:
                 my_cursor.execute("select * from teacher where "+str(self.var_com_search.get())+" Like '%"+str(self.var_search.get())+"%'")
                 data=my_cursor.fetchall()
                 if(len(data)!=0):
-                    self.AttendanceReportTable.delete(*self.AttendanceReportTable.get_children())
+                    self.TeacherTable.delete(*self.TeacherTable.get_children())
                     for i in data:
-                        self.AttendanceReportTable.insert("",END,values=i)
+                        self.TeacherTable.insert("",END,values=i)
                     messagebox.showinfo("Thông báo","Có "+str(len(data))+" bản ghi thỏa mãn điều kiện",parent=self.root)
                     conn.commit()
                 else:
-                    self.AttendanceReportTable.delete(*self.AttendanceReportTable.get_children())
+                    self.TeacherTable.delete(*self.TeacherTable.get_children())
                     messagebox.showinfo("Thông báo", " Không có bản ghi nào thỏa mãn điều kiện",parent=self.root)
                 conn.close()
             except Exception as es:

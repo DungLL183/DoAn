@@ -29,11 +29,11 @@ class Lesson:
 
 
         img3 = PIL.Image.open(r"ImageFaceDetect\bgnt.png")
-        img3 = img3.resize((1530, 790), PIL.Image.ANTIALIAS)
+        img3 = img3.resize((1280, 670), PIL.Image.ANTIALIAS)
         self.photoimg3 = ImageTk.PhotoImage(img3)
 
         bg_img = Label(self.root, image=self.photoimg3)
-        bg_img.place(x=0, y=0, width=1530, height=790)
+        bg_img.place(x=0, y=0, width=1280, height=670)
 
         #==================================heading====================================
         #====time====
@@ -66,13 +66,13 @@ class Lesson:
         lbl_main.place(x=360, y=22, width=500)
 
         main_frame = Frame(bg_img, bd=2, bg="white")
-        main_frame.place(x=23, y=102, width=1482, height=671)
+        main_frame.place(x=23, y=82, width=1230, height=570)
 
         # ===================left_label=====================
         self.getNextid()
         Left_frame = LabelFrame(main_frame, bd=2, bg="white", relief=RIDGE,
                                 font=("times new roman", 12, "bold"))
-        Left_frame.place(x=20, y=5, width=450, height=650)
+        Left_frame.place(x=20, y=5, width=450, height=560)
 
         label_Update_att = Label(Left_frame, bg="#F0FFF0", fg="#483D8B", text="Thông tin giáo viên",
                                  font=("times new roman", 18, "bold"))
@@ -167,7 +167,7 @@ class Lesson:
         # =====btn_frame============
 
         btn_frame = Frame(left_inside_frame, bg="white")
-        btn_frame.place(x=0, y=420, width=440, height=115)
+        btn_frame.place(x=0, y=370, width=440, height=120)
 
         add_btn = Button(btn_frame, text="Thêm mới", command=self.add_data, font=("times new roman", 13, "bold"),
                          bg="#38a6f0", fg="white", width=17)
@@ -184,12 +184,12 @@ class Lesson:
 
         reset_btn = Button(btn_frame, text="Làm mới", command=self.reset_data, font=("times new roman", 13, "bold"),
                            bg="#38a6f0", fg="white", width=17)
-        reset_btn.grid(row=10, column=1, pady=0, padx=20)
+        reset_btn.grid(row=10, column=1, pady=20, padx=20)
 
         # ==================right_ label========================
         Right_frame = LabelFrame(main_frame, bd=2, bg="white",
                                  font=("times new roman", 12, "bold"))
-        Right_frame.place(x=500, y=5, width=960, height=650)
+        Right_frame.place(x=500, y=5, width=720, height=650)
 
         # search
         self.var_com_search = StringVar()
@@ -199,30 +199,30 @@ class Lesson:
 
         search_combo = ttk.Combobox(Right_frame, font=("times new roman", 13, "bold"), textvariable=self.var_com_search,
                                     state="read only",
-                                    width=13)
+                                    width=12)
         search_combo["values"] = ("ID Buổi học", "ID GV", "ID Môn học","Ngày học")
         search_combo.current(0)
         search_combo.grid(row=0, column=1, padx=2, pady=15, sticky=W)
 
         self.var_search = StringVar()
-        search_entry = ttk.Entry(Right_frame, textvariable=self.var_search, width=15,
+        search_entry = ttk.Entry(Right_frame, textvariable=self.var_search, width=13,
                                  font=("times new roman", 13, "bold"))
         search_entry.grid(row=0, column=2, padx=15, pady=5, sticky=W)
 
         search_btn = Button(Right_frame, command=self.search_data, text="Tìm kiếm",
                             font=("times new roman", 13, "bold"), bg="#38a6f0", fg="white",
-                            width=12)
+                            width=10)
         search_btn.grid(row=0, column=3, padx=15)
 
         showAll_btn = Button(Right_frame, text="Xem tất cả", command=self.fetch_data,
                              font=("times new roman", 13, "bold"), bg="#38a6f0",
                              fg="white",
-                             width=12)
+                             width=10)
         showAll_btn.grid(row=0, column=5, padx=15)
 
         # table_frame
         table_frame = Frame(Right_frame, bd=2, relief=RIDGE, bg="white")
-        table_frame.place(x=5, y=55, width=940, height=580)
+        table_frame.place(x=5, y=55, width=710, height=510)
 
         # scroll bar
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
@@ -293,7 +293,7 @@ class Lesson:
         self.heading.config(fg=fg)
         self.heading.after(50, self.heading_color)
     def callback(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
                                        )
         my_cursor = conn.cursor()
         my_cursor.execute("select Teacher_id from `teacher` ")
@@ -306,7 +306,7 @@ class Lesson:
 
             self.var_teachername.set("")
         else:
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("select Name from `teacher` where Teacher_id=%s", (self.var_teacherid.get(),))
@@ -315,7 +315,7 @@ class Lesson:
         conn.commit()
         conn.close()
     def callSubject(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
                                        )
         my_cursor = conn.cursor()
         my_cursor.execute("select Subject_id from `subject` ")
@@ -328,7 +328,7 @@ class Lesson:
 
             self.var_subjectname.set("")
         else:
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("select Subject_name from `subject` where Subject_id=%s", (self.var_subjectid.get(),))
@@ -337,7 +337,7 @@ class Lesson:
         conn.commit()
         conn.close()
     def getNextid(self):
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
             )
             my_cursor = conn.cursor()
             my_cursor.execute(
@@ -364,7 +364,7 @@ class Lesson:
 
 
     def add_data(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
                                        )
         my_cursor = conn.cursor()
 
@@ -394,7 +394,7 @@ class Lesson:
 
         else:
             try:
-                conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer')
+                conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan')
 
                 my_cursor=conn.cursor()
                 my_cursor.execute("insert into lesson values(%s,%s,%s,%s,%s,%s)",(
@@ -426,7 +426,7 @@ class Lesson:
     def fetch_data(self):
             # global mydata
             # mydata.clear()
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
                                            )
 
             my_cursor = conn.cursor()
@@ -443,7 +443,7 @@ class Lesson:
     def update(self,rows):
         self.AttendanceReportTable.delete(*self.AttendanceReportTable.get_children())
     def update_data(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
                                        )
         my_cursor = conn.cursor()
         # =========check subject============
@@ -474,7 +474,7 @@ class Lesson:
             try:
                 Update=messagebox.askyesno("Update","Bạn có muốn cập nhật bản ghi này không?",parent=self.root)
                 if Update>0:
-                    conn=mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer')
+                    conn=mysql.connector.connect(host='localhost', user='root', password='', database='doan')
                     my_cursor = conn.cursor()
                     my_cursor.execute("update lesson set Time_start=%s,Time_end=%s,Date=%s,Teacher_id=%s,Subject_id=%s"
                                       " where Teacher_id=%s",(
@@ -505,7 +505,7 @@ class Lesson:
                     delete = messagebox.askyesno("Xoá bản ghi", "Bạn có muốn xóa bản ghi này ?", parent=self.root)
                     if delete > 0:
                         conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                                       database='face_recognizer')
+                                                       database='doan')
                         my_cursor = conn.cursor()
                         sql = "delete from lesson where Lesson_id=%s"
                         val = (self.var_id.get(),)
@@ -529,7 +529,7 @@ class Lesson:
         else:
             try:
                 conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                               database='face_recognizer')
+                                               database='doan')
                 my_cursor = conn.cursor()#"ID Điểm Danh", "Ngày", "ID Sinh Viên"
                 if(self.var_com_search.get()=="ID GV"):
                     self.var_com_search.set("Teacher_id")

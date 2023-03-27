@@ -18,7 +18,7 @@ class Train:
         title_lbl.place(x=0, y=0, width=1530, height=45)
 
         img4 = PIL.Image.open(r"ImageFaceDetect\train2.png")
-        img4 = img4.resize((900, 325), PIL.Image.ANTIALIAS)
+        img4 = img4.resize((900, 325), PIL.Image.Resampling.LANCZOS)
         self.photoimg4 = ImageTk.PhotoImage(img4)
 
         f_lbl = Label(self.root, image=self.photoimg4)
@@ -31,7 +31,7 @@ class Train:
 
 
         img5 = PIL.Image.open(r"ImageFaceDetect\train1.png")
-        img5 = img5.resize((900, 325), PIL.Image.ANTIALIAS)
+        img5 = img5.resize((900, 325), PIL.Image.Resampling.LANCZOS)
         self.photoimg5 = ImageTk.PhotoImage(img5)
 
         f_lbl = Label(self.root, image=self.photoimg5)
@@ -45,7 +45,7 @@ class Train:
         ids=[]
         for image in path:
             # img=PIL.Image.open(image).convert('L')
-            img=Image.open(image).convert('L')
+            img=PIL.Image.open(image).convert('L')
             imageNp=np.array(img,'uint8')
             id=int(os.path.split(image)[1].split('.')[1])
             faces.append(imageNp)

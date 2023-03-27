@@ -424,30 +424,30 @@ class Student:
 
         # table_frame
         tablestd_frame = Frame(Underright_frame, bd=2, relief=RIDGE, bg="white")
-        tablestd_frame.place(x=400, y=40, width=200, height=220)
+        tablestd_frame.place(x=400, y=40, width=200, height=200)
 
         # scroll bar
         scroll_x = ttk.Scrollbar(tablestd_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(tablestd_frame, orient=VERTICAL)
 
-        self.StudentTable = ttk.Treeview(tablestd_frame, column=(
+        self.class_table = ttk.Treeview(tablestd_frame, column=(
             "class", "name"),
                                          xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
 
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
-        scroll_x.config(command=self.StudentTable.xview)
-        scroll_y.config(command=self.StudentTable.yview)
+        scroll_x.config(command=self.class_table.xview)
+        scroll_y.config(command=self.class_table.yview)
 
-        self.StudentTable.heading("class", text="Lớp học")
-        self.StudentTable.heading("name", text="Tên")
+        self.class_table.heading("class", text="Lớp học")
+        self.class_table.heading("name", text="Tên")
 
-        self.StudentTable["show"] = "headings"
-        self.StudentTable.column("class", width=80)
-        self.StudentTable.column("name", width=80)
+        self.class_table["show"] = "headings"
+        self.class_table.column("class", width=80)
+        self.class_table.column("name", width=80)
 
-        self.StudentTable.pack(fill=BOTH, expand=1)
-        self.StudentTable.bind("<ButtonRelease>", self.get_cursorClass)
+        self.class_table.pack(fill=BOTH, expand=1)
+        self.class_table.bind("<ButtonRelease>", self.get_cursorClass)
         self.fetch_Classdata()
 
     #============function decration===============
@@ -740,7 +740,7 @@ class Student:
                         cv2.putText(face,str(img_id),(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,(0,255,0),2)
                         cv2.imshow("Cropped Face",face)
 
-                    if cv2.waitKey(1)==13 or int(img_id)==120:#duyet du 120 anh
+                    if cv2.waitKey(1)==13 or int(img_id)==100:#duyet du 100 anh
                         break
                 cap.release()
                 cv2.destroyAllWindows()
@@ -775,8 +775,8 @@ class Student:
     # ========================================Function Student======================================
 
     def get_cursorClass(self, event=""):
-            cursor_row = self.StudentTable.focus()
-            content = self.StudentTable.item(cursor_row)
+            cursor_row = self.class_table.focus()
+            content = self.class_table.item(cursor_row)
             rows = content['values']
             self.var_class.set(rows[0])
             self.var_nameclass.set(rows[1])
@@ -833,9 +833,9 @@ class Student:
             my_cursor.execute("Select * from class")
             data = my_cursor.fetchall()
             if len(data) != 0:
-                self.StudentTable.delete(*self.StudentTable.get_children())
+                self.class_table.delete(*self.class_table.get_children())
                 for i in data:
-                    self.StudentTable.insert("", END, values=i)
+                    self.class_table.insert("", END, values=i)
                     mydata.append(i)
                 conn.commit()
             conn.close()
@@ -914,13 +914,13 @@ class Student:
                         self.var_com_searchclass.get()) + " Like '%" + str(self.var_searchclass.get()) + "%'")
                     data = my_cursor.fetchall()
                     if (len(data) != 0):
-                        self.StudentTable.delete(*self.StudentTable.get_children())
+                        self.class_table.delete(*self.class_table.get_children())
                         for i in data:
-                            self.StudentTable.insert("", END, values=i)
+                            self.class_table.insert("", END, values=i)
                         messagebox.showinfo("Thông báo", "Có " + str(len(data)) + " bản ghi thỏa mãn điều kiện",parent=self.root)
                         conn.commit()
                     else:
-                        self.StudentTable.delete(*self.StudentTable.get_children())
+                        self.class_table.delete(*self.class_table.get_children())
                         messagebox.showinfo("Thông báo", " Không có bản ghi nào thỏa mãn điều kiện",parent=self.root)
                     conn.close()
                 except Exception as es:

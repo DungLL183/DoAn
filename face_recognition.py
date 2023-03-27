@@ -279,7 +279,7 @@ class Face_Recognition:
             conn = mysql.connector.connect(host='localhost', user='root', password='',
                                            database='face_recognizer')
             my_cursor = conn.cursor()
-            my_cursor.execute("select Time_start,Time_end,Class from lesson,subject where `subject`.Subject_id=lesson.Subject_id and Lesson_id=%s ",
+            my_cursor.execute("select Time_start,Time_end,Class_Subject from lesson,subject where `subject`.Subject_id=lesson.Subject_id and Lesson_id=%s ",
                               (self.lessonid,))
             getInfo=my_cursor.fetchone()
             timeclass=str(getInfo[0])+" - "+str(getInfo[1])

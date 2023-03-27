@@ -177,33 +177,33 @@ class Subject:
 
         # table_frame
         table_frame = Frame(Right_frame, bd=2, relief=RIDGE, bg="white")
-        table_frame.place(x=50, y=55, width=600, height=233)
+        table_frame.place(x=50, y=55, width=600, height=240)
 
         # scroll bar
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
 
-        self.AttendanceReportTable = ttk.Treeview(table_frame, column=(
+        self.SubjectTable = ttk.Treeview(table_frame, column=(
         "id", "name", "class"),
                                                   xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
 
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
-        scroll_x.config(command=self.AttendanceReportTable.xview)
-        scroll_y.config(command=self.AttendanceReportTable.yview)
+        scroll_x.config(command=self.SubjectTable.xview)
+        scroll_y.config(command=self.SubjectTable.yview)
 
-        self.AttendanceReportTable.heading("id", text="ID Môn học")
-        self.AttendanceReportTable.heading("name", text="Tên môn học")
-        self.AttendanceReportTable.heading("class", text="Lớp tín chỉ")
+        self.SubjectTable.heading("id", text="ID Môn học")
+        self.SubjectTable.heading("name", text="Tên môn học")
+        self.SubjectTable.heading("class", text="Lớp tín chỉ")
 
-        self.AttendanceReportTable["show"] = "headings"
-        self.AttendanceReportTable.column("id", width=100)
-        self.AttendanceReportTable.column("name", width=100)
-        self.AttendanceReportTable.column("class", width=100)
+        self.SubjectTable["show"] = "headings"
+        self.SubjectTable.column("id", width=100)
+        self.SubjectTable.column("name", width=100)
+        self.SubjectTable.column("class", width=100)
 
-        self.AttendanceReportTable.pack(fill=BOTH, expand=1)
+        self.SubjectTable.pack(fill=BOTH, expand=1)
 
-        self.AttendanceReportTable.bind("<ButtonRelease>", self.get_cursor)
+        self.SubjectTable.bind("<ButtonRelease>", self.get_cursor)
         self.fetch_data()  # load du lieu len grid
 
         #=============================UNDER_LEFT============================
@@ -309,26 +309,26 @@ class Subject:
         scroll_x = ttk.Scrollbar(tabletc_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(tabletc_frame, orient=VERTICAL)
 
-        self.TeacherTable = ttk.Treeview(tabletc_frame, column=(
+        self.TeacherSubjectTable = ttk.Treeview(tabletc_frame, column=(
             "teacherid", "subid"),
                                                   xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
 
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
-        scroll_x.config(command=self.TeacherTable.xview)
-        scroll_y.config(command=self.TeacherTable.yview)
+        scroll_x.config(command=self.TeacherSubjectTable.xview)
+        scroll_y.config(command=self.TeacherSubjectTable.yview)
 
-        self.TeacherTable.heading("teacherid", text="ID GV")
-        self.TeacherTable.heading("subid", text="ID Môn học")
-
-
-        self.TeacherTable["show"] = "headings"
-        self.TeacherTable.column("teacherid", width=80)
-        self.TeacherTable.column("subid", width=80)
+        self.TeacherSubjectTable.heading("teacherid", text="ID GV")
+        self.TeacherSubjectTable.heading("subid", text="ID Môn học")
 
 
-        self.TeacherTable.pack(fill=BOTH, expand=1)
-        self.TeacherTable.bind("<ButtonRelease>", self.get_cursorTc)
+        self.TeacherSubjectTable["show"] = "headings"
+        self.TeacherSubjectTable.column("teacherid", width=80)
+        self.TeacherSubjectTable.column("subid", width=80)
+
+
+        self.TeacherSubjectTable.pack(fill=BOTH, expand=1)
+        self.TeacherSubjectTable.bind("<ButtonRelease>", self.get_cursorTc)
         self.fetch_Tcdata()
 
         #==================Under_right==================
@@ -437,24 +437,24 @@ class Subject:
         scroll_x = ttk.Scrollbar(tablestd_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(tablestd_frame, orient=VERTICAL)
 
-        self.StudentTable = ttk.Treeview(tablestd_frame, column=(
+        self.StudentSubjectTable = ttk.Treeview(tablestd_frame, column=(
             "studentid", "subid"),
                                          xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
 
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
-        scroll_x.config(command=self.StudentTable.xview)
-        scroll_y.config(command=self.StudentTable.yview)
+        scroll_x.config(command=self.StudentSubjectTable.xview)
+        scroll_y.config(command=self.StudentSubjectTable.yview)
 
-        self.StudentTable.heading("studentid", text="ID Sinh viên")
-        self.StudentTable.heading("subid", text="ID Môn học")
+        self.StudentSubjectTable.heading("studentid", text="ID Sinh viên")
+        self.StudentSubjectTable.heading("subid", text="ID Môn học")
 
-        self.StudentTable["show"] = "headings"
-        self.StudentTable.column("studentid", width=60)
-        self.StudentTable.column("subid", width=60)
+        self.StudentSubjectTable["show"] = "headings"
+        self.StudentSubjectTable.column("studentid", width=60)
+        self.StudentSubjectTable.column("subid", width=60)
 
-        self.StudentTable.pack(fill=BOTH, expand=1)
-        self.StudentTable.bind("<ButtonRelease>", self.get_cursorStd)
+        self.StudentSubjectTable.pack(fill=BOTH, expand=1)
+        self.StudentSubjectTable.bind("<ButtonRelease>", self.get_cursorStd)
         self.fetch_Stddata()
         # ================fetchData======================
 
@@ -495,8 +495,8 @@ class Subject:
         # return  self.var_id
 
     def get_cursor(self,event=""):
-        cursor_row=self.AttendanceReportTable.focus()
-        content=self.AttendanceReportTable.item(cursor_row)
+        cursor_row=self.SubjectTable.focus()
+        content=self.SubjectTable.item(cursor_row)
         rows=content['values']
         self.var_subid.set(rows[0])
         self.var_subname.set(rows[1])
@@ -570,14 +570,14 @@ class Subject:
             my_cursor.execute("Select * from subject")
             data = my_cursor.fetchall()
             if len(data) != 0:
-                self.AttendanceReportTable.delete(*self.AttendanceReportTable.get_children())
+                self.SubjectTable.delete(*self.SubjectTable.get_children())
                 for i in data:
-                    self.AttendanceReportTable.insert("", END, values=i)
+                    self.SubjectTable.insert("", END, values=i)
                     mydata.append(i)
                 conn.commit()
             conn.close()
     def update(self,rows):
-        self.AttendanceReportTable.delete(*self.AttendanceReportTable.get_children())
+        self.SubjectTable.delete(*self.SubjectTable.get_children())
     def update_data(self):
         conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
                                        )
@@ -672,13 +672,13 @@ class Subject:
                 my_cursor.execute("select * from subject where "+str(self.var_com_search.get())+" Like '%"+str(self.var_search.get())+"%'")
                 data=my_cursor.fetchall()
                 if(len(data)!=0):
-                    self.AttendanceReportTable.delete(*self.AttendanceReportTable.get_children())
+                    self.SubjectTable.delete(*self.SubjectTable.get_children())
                     for i in data:
-                        self.AttendanceReportTable.insert("",END,values=i)
+                        self.SubjectTable.insert("",END,values=i)
                     messagebox.showinfo("Thông báo","Có "+str(len(data))+" bản ghi thỏa mãn điều kiện")
                     conn.commit()
                 else:
-                    self.AttendanceReportTable.delete(*self.AttendanceReportTable.get_children())
+                    self.SubjectTable.delete(*self.SubjectTable.get_children())
                     messagebox.showinfo("Thông báo", " Không có bản ghi nào thỏa mãn điều kiện")
                 conn.close()
             except Exception as es:
@@ -688,8 +688,8 @@ class Subject:
 
 
     def get_cursorTc(self,event=""):
-        cursor_row=self.TeacherTable.focus()
-        content=self.TeacherTable.item(cursor_row)
+        cursor_row=self.TeacherSubjectTable.focus()
+        content=self.TeacherSubjectTable.item(cursor_row)
         rows=content['values']
         self.var_current_tc.set(rows[0])
         self.var_current_sub.set(rows[1])
@@ -812,9 +812,9 @@ class Subject:
             my_cursor.execute("Select * from teacher_has_subject")
             data = my_cursor.fetchall()
             if len(data) != 0:
-                self.TeacherTable.delete(*self.TeacherTable.get_children())
+                self.TeacherSubjectTable.delete(*self.TeacherSubjectTable.get_children())
                 for i in data:
-                    self.TeacherTable.insert("", END, values=i)
+                    self.TeacherSubjectTable.insert("", END, values=i)
                     mydata.append(i)
                 conn.commit()
             conn.close()
@@ -924,13 +924,13 @@ class Subject:
                 my_cursor.execute("select * from teacher_has_subject where "+str(self.var_com_searchtc.get())+" Like '%"+str(self.var_searchtc.get())+"%'")
                 data=my_cursor.fetchall()
                 if(len(data)!=0):
-                    self.TeacherTable.delete(*self.TeacherTable.get_children())
+                    self.TeacherSubjectTable.delete(*self.TeacherSubjectTable.get_children())
                     for i in data:
-                        self.TeacherTable.insert("",END,values=i)
+                        self.TeacherSubjectTable.insert("",END,values=i)
                     messagebox.showinfo("Thông báo","Có "+str(len(data))+" bản ghi thỏa mãn điều kiện")
                     conn.commit()
                 else:
-                    self.TeacherTable.delete(*self.TeacherTable.get_children())
+                    self.TeacherSubjectTable.delete(*self.TeacherSubjectTable.get_children())
                     messagebox.showinfo("Thông báo", " Không có bản ghi nào thỏa mãn điều kiện")
                 conn.close()
             except Exception as es:
@@ -939,8 +939,8 @@ class Subject:
     #========================================Function Student======================================
 
     def get_cursorStd(self, event=""):
-            cursor_row = self.StudentTable.focus()
-            content = self.StudentTable.item(cursor_row)
+            cursor_row = self.StudentSubjectTable.focus()
+            content = self.StudentSubjectTable.item(cursor_row)
             rows = content['values']
             self.var_current_std.set(rows[0])
             self.var_current_substd.set(rows[1])
@@ -1062,9 +1062,9 @@ class Subject:
             my_cursor.execute("Select * from student_has_subject")
             data = my_cursor.fetchall()
             if len(data) != 0:
-                self.StudentTable.delete(*self.StudentTable.get_children())
+                self.StudentSubjectTable.delete(*self.StudentSubjectTable.get_children())
                 for i in data:
-                    self.StudentTable.insert("", END, values=i)
+                    self.StudentSubjectTable.insert("", END, values=i)
                     mydata.append(i)
                 conn.commit()
             conn.close()
@@ -1176,13 +1176,13 @@ class Subject:
                         self.var_com_searchstd.get()) + " Like '%" + str(self.var_searchstd.get()) + "%'")
                     data = my_cursor.fetchall()
                     if (len(data) != 0):
-                        self.StudentTable.delete(*self.StudentTable.get_children())
+                        self.StudentSubjectTable.delete(*self.StudentSubjectTable.get_children())
                         for i in data:
-                            self.StudentTable.insert("", END, values=i)
+                            self.StudentSubjectTable.insert("", END, values=i)
                         messagebox.showinfo("Thông báo", "Có " + str(len(data)) + " bản ghi thỏa mãn điều kiện")
                         conn.commit()
                     else:
-                        self.StudentTable.delete(*self.StudentTable.get_children())
+                        self.StudentSubjectTable.delete(*self.StudentSubjectTable.get_children())
                         messagebox.showinfo("Thông báo", " Không có bản ghi nào thỏa mãn điều kiện")
                     conn.close()
                 except Exception as es:
