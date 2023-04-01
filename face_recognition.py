@@ -28,8 +28,8 @@ class Face_Recognition:
     btnClose = None
 
     check=1
-    camara.set(2, 640) ##chiều dài
-    camara.set(3, 480)  ##chiều rộng
+    camara.set(2, 1280) ##chiều dài (640)
+    camara.set(3, 720)  ##chiều rộng (480)
     camara.set(10, 150)
     # camara.set(2, 1280) ##chiều dài
     # camara.set(3, 720)  ##chiều rộng
@@ -324,8 +324,10 @@ class Face_Recognition:
                 chkarray.append(cks[0])
 
             if(i not in chkarray):
-                self.notify_label['text']="Thông báo: Sinh viên "+n+" Không có trong danh sách lớp học"
-                print("Sinh viên:" + n + " không có trong danh sách lớp học ")
+                # self.notify_label['text']="Thông báo: Sinh viên "+n+" Không có trong danh sách lớp học"
+                # print("Sinh viên:" + n + " không có trong danh sách lớp học ")
+                # continue
+                pass
             
             else:
                 try:
@@ -741,8 +743,8 @@ class Face_Recognition:
             # self.camara.set(3, 800) ##chiều dài
             # self.camara.set(4, 580)  ##chiều rộng
             # self.camara.set(10, 150)  #độ sáng
-            self.camara.set(2, 640) ##chiều dài
-            self.camara.set(3, 480)  ##chiều rộng
+            self.camara.set(2, 1280) ##chiều dài (640)
+            self.camara.set(3, 720)  ##chiều rộng (480)
             self.camara.set(10, 150)  #độ sáng
             while True:
 
