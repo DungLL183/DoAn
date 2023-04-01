@@ -28,9 +28,12 @@ class Face_Recognition:
     btnClose = None
 
     check=1
-    camara.set(3, 800) ##chiều dài
-    camara.set(4, 580)  ##chiều rộng
+    camara.set(2, 640) ##chiều dài
+    camara.set(3, 480)  ##chiều rộng
     camara.set(10, 150)
+    # camara.set(2, 1280) ##chiều dài
+    # camara.set(3, 720)  ##chiều rộng
+    # camara.set(10, 150)
     def __init__(self,root):
         self.root=root
         self.root.geometry("1530x790+0+0")
@@ -66,6 +69,7 @@ class Face_Recognition:
         today = strftime("%d/%m/%Y")#time_today
         subject_array = [] #array for append id_lesson,subject
         #call lesson_id from db
+        # Liệt kê thông tin về môn học cho từng giảng viên hoặc liệt kê tất cả môn học trong ngày đối với admin
         if(value_from_home=="0" or value_from_home==None):
             conn = mysql.connector.connect(host='localhost', user='root', password='',
                                            database='face_recognizer')
@@ -279,7 +283,7 @@ class Face_Recognition:
             conn = mysql.connector.connect(host='localhost', user='root', password='',
                                            database='face_recognizer')
             my_cursor = conn.cursor()
-            my_cursor.execute("select Time_start,Time_end,Class_Subject from lesson,subject where `subject`.Subject_id=lesson.Subject_id and Lesson_id=%s ",
+            my_cursor.execute("select Time_start,Time_end,Class_Subject from lesson,`subject` where `subject`.Subject_id=lesson.Subject_id and Lesson_id=%s ",
                               (self.lessonid,))
             getInfo=my_cursor.fetchone()
             timeclass=str(getInfo[0])+" - "+str(getInfo[1])
@@ -320,8 +324,9 @@ class Face_Recognition:
                 chkarray.append(cks[0])
 
             if(i not in chkarray):
-                self.notify_label['text']="Thông báo: Sinh viên "+n+" Không có trong danh sách lớp"
+                self.notify_label['text']="Thông báo: Sinh viên "+n+" Không có trong danh sách lớp học"
                 print("Sinh viên:" + n + " không có trong danh sách lớp học ")
+            
             else:
                 try:
                         conn = mysql.connector.connect(host='localhost', user='root', password='',
@@ -341,7 +346,7 @@ class Face_Recognition:
                             b.append(str(i1[1]))
                         #nếu chọn loại điểm danh là ra hoặc vào
                         if(self.type_attendance.get()=="Vào"):
-                            if((d1 not in a)) or ((self.lessonid not in b)):
+                            if((d1 not in a)) or ((self.lessonid not in b)): # kiểm tra xem sv đã điểm danh vào hay chưa bằng cách check ngày điểm danh hoặc id buổi học tương ứng với sinh viên đó
 
                                 my_cursor = conn.cursor()
                                 my_cursor.execute("insert into attendance values(%s,%s,%s,%s,%s,%s,%s,%s,%s)", (
@@ -388,7 +393,7 @@ class Face_Recognition:
                                                                      bg="white", justify="left")
                                 self.studentname_atten_label.grid(row=1, column=1, padx=15, pady=10, ipadx=10)
 
-                                # class
+                                # time
                                 self.studentclass_label = Label(self.studentID_atten_info, text="Thời gian:",
                                                                 font=("times new roman", 13, "bold"),
                                                                 bg="white")
@@ -415,14 +420,15 @@ class Face_Recognition:
                                 ckStart_in = my_cursor.fetchone()
                                 time_start = ckStart_in[0]
                                 # print(time_start)
-                                if(time_in<time_start):
+                                if(time_in<=time_start):
                                     my_cursor.execute(
                                         "update  attendance set AttendanceStatus=%s where Student_id=%s and Lesson_id=%s",
                                         ("Có mặt", str(i), (self.lessonid),))
                                 else:
                                     a = datetime.strptime(str(time_in - time_start), '%H:%M:%S').time()
                                     b = datetime.strptime('0:00:00', '%H:%M:%S').time()#thoi gian dc phep diem danh co mat 15 phut
-                                    c = datetime.strptime('0:50:00', '%H:%M:%S').time()# thoi gian dc phep diem danh muon
+                                    # c = datetime.strptime('0:50:00', '%H:%M:%S').time()# thoi gian dc phep diem danh muon
+                                    c = datetime.strptime('0:25:00', '%H:%M:%S').time()# thoi gian dc phep diem danh muon
                                     d = datetime.strptime('1:00:00', '%H:%M:%S').time()#thoi gian cho phep sv vang 1 tiet
 
                                     if (b < a < c):
@@ -630,7 +636,7 @@ class Face_Recognition:
                                     time_out = ckTime_out[0]
                                     # print(time_out)
 
-                                    # -======Timestart========
+                                    # -======Timeend========
 
                                     my_cursor.execute("Select Time_end from lesson where Lesson_id=%s ",
                                                       (self.lessonid,))
@@ -720,7 +726,7 @@ class Face_Recognition:
                         self.mark_attendance(i,r,n,d,face_cropped)
                     else:
                         cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),3)
-                        cv2.putText(img,"Unknow Face",(x,y-5), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 2)
+                        cv2.putText(img,"Unknown Face",(x,y-5), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 2)
                     coord=[x,y,w,h]
                 return coord
 
@@ -732,8 +738,11 @@ class Face_Recognition:
             clf.read("classifier.xml")
 
             self.camara=cv2.VideoCapture(0)
-            self.camara.set(3, 800) ##chiều dài
-            self.camara.set(4, 580)  ##chiều rộng
+            # self.camara.set(3, 800) ##chiều dài
+            # self.camara.set(4, 580)  ##chiều rộng
+            # self.camara.set(10, 150)  #độ sáng
+            self.camara.set(2, 640) ##chiều dài
+            self.camara.set(3, 480)  ##chiều rộng
             self.camara.set(10, 150)  #độ sáng
             while True:
 

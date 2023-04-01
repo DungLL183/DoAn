@@ -29,7 +29,7 @@ class Lesson:
 
 
         img3 = PIL.Image.open(r"ImageFaceDetect\bgnt.png")
-        img3 = img3.resize((1280, 670), PIL.Image.ANTIALIAS)
+        img3 = img3.resize((1280, 670), PIL.Image.Resampling.LANCZOS)
         self.photoimg3 = ImageTk.PhotoImage(img3)
 
         bg_img = Label(self.root, image=self.photoimg3)
@@ -38,7 +38,7 @@ class Lesson:
         #==================================heading====================================
         #====time====
         img_time = PIL.Image.open(r"ImageFaceDetect\timsearch50.png")
-        img_time = img_time.resize((27, 27), PIL.Image.ANTIALIAS)
+        img_time = img_time.resize((27, 27), PIL.Image.Resampling.LANCZOS)
         self.photoimgtime = ImageTk.PhotoImage(img_time)
         time_img = Label(self.root, image=self.photoimgtime,bg="white")
         time_img.place(x=43, y=40, width=27, height=27)
@@ -53,17 +53,17 @@ class Lesson:
         lbl1.place(x=80, y=60, width=100, height=20)
 
         #====title=========
-        # self.txt = "Quản lý thông tin lịch học"
-        # self.count = 0
-        # self.text = ''
-        # self.color = ["#4f4e4d", "#f29844", "red2"]
-        # self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 28, "bold"), bg="white", fg="black",
-        #                      bd=5, relief=FLAT)
-        # self.heading.place(x=400, y=22, width=650)
-        # self.slider()
-        # self.heading_color()
-        lbl_main = Label(text="Quản lý thông tin buổi học", font=("times new roman", 26,"bold"),bg="white", fg="red")
-        lbl_main.place(x=360, y=22, width=500)
+        self.txt = "Quản lý thông tin lịch học"
+        self.count = 0
+        self.text = ''
+        self.color = ["#4f4e4d", "#f29844", "red2"]
+        self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 28, "bold"), bg="white", fg="black",
+                             bd=5, relief=FLAT)
+        self.heading.place(x=400, y=22, width=650)
+        self.slider()
+        self.heading_color()
+        # lbl_main = Label(text="Quản lý thông tin buổi học", font=("times new roman", 26,"bold"),bg="white", fg="red")
+        # lbl_main.place(x=360, y=22, width=500)
 
         main_frame = Frame(bg_img, bd=2, bg="white")
         main_frame.place(x=23, y=82, width=1230, height=570)
@@ -293,51 +293,51 @@ class Lesson:
         self.heading.config(fg=fg)
         self.heading.after(50, self.heading_color)
     def callback(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         my_cursor.execute("select Teacher_id from `teacher` ")
-        ckteacher = my_cursor.fetchall()
+        cksubject = my_cursor.fetchall()
         arrayTeacher = []
-        for cht in ckteacher:
+        for cht in cksubject:
             # print(cht[0])
             arrayTeacher.append(str(cht[0]))
         if(self.var_teacherid.get() not in arrayTeacher):
 
             self.var_teachername.set("")
         else:
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("select Name from `teacher` where Teacher_id=%s", (self.var_teacherid.get(),))
-            ckteacher = my_cursor.fetchone()
-            self.var_teachername.set(ckteacher[0])
+            cksubject = my_cursor.fetchone()
+            self.var_teachername.set(cksubject[0])
         conn.commit()
         conn.close()
     def callSubject(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         my_cursor.execute("select Subject_id from `subject` ")
-        ckteacher = my_cursor.fetchall()
-        arrayTeacher = []
-        for cht in ckteacher:
+        cksubject = my_cursor.fetchall()
+        arraySubject = []
+        for cht in cksubject:
             # print(cht[0])
-            arrayTeacher.append(str(cht[0]))
-        if(self.var_subjectid.get() not in arrayTeacher):
+            arraySubject.append(str(cht[0]))
+        if(self.var_subjectid.get() not in arraySubject):
 
             self.var_subjectname.set("")
         else:
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("select Subject_name from `subject` where Subject_id=%s", (self.var_subjectid.get(),))
-            ckteacher = my_cursor.fetchone()
-            self.var_subjectname.set(ckteacher[0])
+            cksubject = my_cursor.fetchone()
+            self.var_subjectname.set(cksubject[0])
         conn.commit()
         conn.close()
     def getNextid(self):
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
             )
             my_cursor = conn.cursor()
             my_cursor.execute(
@@ -364,7 +364,7 @@ class Lesson:
 
 
     def add_data(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
 
@@ -394,7 +394,7 @@ class Lesson:
 
         else:
             try:
-                conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan')
+                conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer')
 
                 my_cursor=conn.cursor()
                 my_cursor.execute("insert into lesson values(%s,%s,%s,%s,%s,%s)",(
@@ -426,7 +426,7 @@ class Lesson:
     def fetch_data(self):
             # global mydata
             # mydata.clear()
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                            )
 
             my_cursor = conn.cursor()
@@ -443,7 +443,7 @@ class Lesson:
     def update(self,rows):
         self.AttendanceReportTable.delete(*self.AttendanceReportTable.get_children())
     def update_data(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         # =========check subject============
@@ -474,7 +474,7 @@ class Lesson:
             try:
                 Update=messagebox.askyesno("Update","Bạn có muốn cập nhật bản ghi này không?",parent=self.root)
                 if Update>0:
-                    conn=mysql.connector.connect(host='localhost', user='root', password='', database='doan')
+                    conn=mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer')
                     my_cursor = conn.cursor()
                     my_cursor.execute("update lesson set Time_start=%s,Time_end=%s,Date=%s,Teacher_id=%s,Subject_id=%s"
                                       " where Teacher_id=%s",(
@@ -505,7 +505,7 @@ class Lesson:
                     delete = messagebox.askyesno("Xoá bản ghi", "Bạn có muốn xóa bản ghi này ?", parent=self.root)
                     if delete > 0:
                         conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                                       database='doan')
+                                                       database='face_recognizer')
                         my_cursor = conn.cursor()
                         sql = "delete from lesson where Lesson_id=%s"
                         val = (self.var_id.get(),)
@@ -529,7 +529,7 @@ class Lesson:
         else:
             try:
                 conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                               database='doan')
+                                               database='face_recognizer')
                 my_cursor = conn.cursor()#"ID Điểm Danh", "Ngày", "ID Sinh Viên"
                 if(self.var_com_search.get()=="ID GV"):
                     self.var_com_search.set("Teacher_id")

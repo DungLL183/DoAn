@@ -57,17 +57,17 @@ class Subject:
         lbl1.place(x=80, y=60, width=100, height=20)
 
         #====title=========
-        # self.txt = "Quản lý thông tin môn học"
-        # self.count = 0
-        # self.text = ''
-        # self.color = ["#4f4e4d", "#f29844", "red2"]
-        # self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 28, "bold"), bg="white", fg="black",
-        #                      bd=5, relief=FLAT)
-        # self.heading.place(x=400, y=22, width=650)
-        # self.slider()
-        # self.heading_color()
-        lbl_main = Label(text="Quản lý thông tin môn học", font=("times new roman", 26,"bold"),bg="white", fg="red")
-        lbl_main.place(x=360, y=22, width=500)
+        self.txt = "Quản lý thông tin môn học"
+        self.count = 0
+        self.text = ''
+        self.color = ["#4f4e4d", "#f29844", "red2"]
+        self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 28, "bold"), bg="white", fg="black",
+                             bd=5, relief=FLAT)
+        self.heading.place(x=400, y=22, width=650)
+        self.slider()
+        self.heading_color()
+        # lbl_main = Label(text="Quản lý thông tin môn học", font=("times new roman", 26,"bold"),bg="white", fg="red")
+        # lbl_main.place(x=360, y=22, width=500)
 
         main_frame = Frame(bg_img, bd=2, bg="white")
         main_frame.place(x=23, y=80, width=1230, height=600)
@@ -478,7 +478,7 @@ class Subject:
         self.heading.after(50, self.heading_color)
 
     def getNextid(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         my_cursor.execute(
@@ -504,7 +504,7 @@ class Subject:
 
 
     def add_data(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         #=========check subject============
@@ -540,7 +540,7 @@ class Subject:
         #     messagebox.showerror("Error", "Đã tồn tại mã môn học ! Vui lòng kiểm tra lại", parent=self.root)
         else:
             try:
-                conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan')
+                conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer')
                 my_cursor=conn.cursor()
                 my_cursor.execute("insert into subject values(%s,%s,%s)",(
                     self.var_subid.get(),
@@ -564,7 +564,7 @@ class Subject:
     def fetch_data(self):
             # global mydata
             # mydata.clear()
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("Select * from subject")
@@ -579,7 +579,7 @@ class Subject:
     def update(self,rows):
         self.SubjectTable.delete(*self.SubjectTable.get_children())
     def update_data(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         # =========check subject============
@@ -607,7 +607,7 @@ class Subject:
             try:
                 Update=messagebox.askyesno("Update","Bạn có muốn cập nhật bản ghi này không?",parent=self.root)
                 if Update>0:
-                    conn=mysql.connector.connect(host='localhost', user='root', password='', database='doan')
+                    conn=mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer')
                     my_cursor = conn.cursor()
                     my_cursor.execute("update subject set Subject_name=%s,Class_Subject=%s"
                                       " where Subject_id=%s",(
@@ -634,7 +634,7 @@ class Subject:
                     delete = messagebox.askyesno("Xoá bản ghi", "Bạn có muốn xóa bản ghi này ?", parent=self.root)
                     if delete > 0:
                         conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                                       database='doan')
+                                                       database='face_recognizer')
                         my_cursor = conn.cursor()
                         sql = "delete from subject where Subject_id=%s"
                         val = (self.var_subid.get(),)
@@ -658,7 +658,7 @@ class Subject:
         else:
             try:
                 conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                               database='doan')
+                                               database='face_recognizer')
                 my_cursor = conn.cursor()#"ID Điểm Danh", "Ngày", "ID Sinh Viên"
                 if(self.var_com_search.get()=="ID Môn học"):
                     self.var_com_search.set("Subject_id")
@@ -696,7 +696,7 @@ class Subject:
         self.var_teachersub.set(rows[0])
         self.var_subsub.set(rows[1])
     def callback(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         my_cursor.execute("select Teacher_id from `teacher` ")
@@ -709,7 +709,7 @@ class Subject:
 
             self.var_teachername.set("")
         else:
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("select Name from `teacher` where Teacher_id=%s", (self.var_teachersub.get(),))
@@ -718,7 +718,7 @@ class Subject:
         conn.commit()
         conn.close()
     def callsubtc(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         my_cursor.execute("select Subject_id from `subject` ")
@@ -731,7 +731,7 @@ class Subject:
 
             self.var_subjectname.set("")
         else:
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("select Subject_name from `subject` where Subject_id=%s", (self.var_subsub.get(),))
@@ -741,7 +741,7 @@ class Subject:
         conn.close()
 
     def add_Tcdata(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                     )
         my_cursor = conn.cursor()
         # =========check subject============
@@ -784,7 +784,7 @@ class Subject:
             messagebox.showerror("Error", "ID Môn học không tồn tại! Vui lòng kiểm tra lại", parent=self.root)
         else:
             try:
-                conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan')
+                conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer')
                 my_cursor=conn.cursor()
                 my_cursor.execute("insert into teacher_has_subject values(%s,%s)",(
                     self.var_teachersub.get(),
@@ -806,7 +806,7 @@ class Subject:
     def fetch_Tcdata(self):
             # global mydata
             # mydata.clear()
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("Select * from teacher_has_subject")
@@ -820,7 +820,7 @@ class Subject:
             conn.close()
 
     def update_Tcdata(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         # =========check subject============
@@ -861,7 +861,7 @@ class Subject:
             try:
                 Update=messagebox.askyesno("Update","Bạn có muốn cập nhật bản ghi này không?",parent=self.root)
                 if Update>0:
-                    conn=mysql.connector.connect(host='localhost', user='root', password='', database='doan')
+                    conn=mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer')
                     my_cursor = conn.cursor()
                     my_cursor.execute("UPDATE `teacher_has_subject` SET `Teacher_id` = %s, `Subject_id` = %s WHERE "
                                       "`teacher_has_subject`.`Teacher_id` = %s AND `teacher_has_subject`.`Subject_id` = %s",(
@@ -890,7 +890,7 @@ class Subject:
                     delete = messagebox.askyesno("Xoá bản ghi", "Bạn có muốn xóa bản ghi này ?", parent=self.root)
                     if delete > 0:
                         conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                                       database='doan')
+                                                       database='face_recognizer')
                         my_cursor = conn.cursor()
                         sql = "delete from teacher_has_subject where Teacher_id=%s and Subject_id=%s"
                         val = (self.var_teachersub.get(),self.var_subsub.get(),)
@@ -914,7 +914,7 @@ class Subject:
         else:
             try:
                 conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                               database='doan')
+                                               database='face_recognizer')
                 my_cursor = conn.cursor()#"ID Điểm Danh", "Ngày", "ID Sinh Viên"
                 if(self.var_com_searchtc.get()=="ID Giảng viên"):
                     self.var_com_searchtc.set("Teacher_id")
@@ -948,7 +948,7 @@ class Subject:
             self.var_subsubst.set(rows[1])
 
     def callstudent(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         my_cursor.execute("select Student_id from `student` ")
@@ -961,7 +961,7 @@ class Subject:
 
             self.var_studentname.set("")
         else:
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("select Name from `student` where Student_id=%s", (self.var_studentsub.get(),))
@@ -971,7 +971,7 @@ class Subject:
         conn.close()
 
     def callstSub(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
         )
         my_cursor = conn.cursor()
         my_cursor.execute("select Subject_id from `subject` ")
@@ -984,7 +984,7 @@ class Subject:
 
             self.var_stSubname.set("")
         else:
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("select Subject_name from `subject` where Subject_id=%s", (self.var_subsubst.get(),))
@@ -994,7 +994,7 @@ class Subject:
         conn.close()
 
     def add_Stddata(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         # =========check subject============
@@ -1033,7 +1033,7 @@ class Subject:
         else:
             try:
                 conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                                   database='doan')
+                                                   database='face_recognizer')
                 my_cursor = conn.cursor()
                 my_cursor.execute("insert into student_has_subject values(%s,%s)", (
                         self.var_studentsub.get(),
@@ -1056,7 +1056,7 @@ class Subject:
     def fetch_Stddata(self):
             # global mydata
             # mydata.clear()
-            conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+            conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                            )
             my_cursor = conn.cursor()
             my_cursor.execute("Select * from student_has_subject")
@@ -1070,7 +1070,7 @@ class Subject:
             conn.close()
 
     def update_Stddata(self):
-        conn = mysql.connector.connect(host='localhost', user='root', password='', database='doan'
+        conn = mysql.connector.connect(host='localhost', user='root', password='', database='face_recognizer'
                                        )
         my_cursor = conn.cursor()
         # =========check subject============
@@ -1111,7 +1111,7 @@ class Subject:
                 Update = messagebox.askyesno("Update", "Bạn có muốn cập nhật bản ghi này không?", parent=self.root)
                 if Update > 0:
                     conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                                       database='doan')
+                                                       database='face_recognizer')
                     my_cursor = conn.cursor()
                     my_cursor.execute("UPDATE `student_has_subject` SET `Student_id` = %s, `Subject_id` = %s WHERE "
                                           "`student_has_subject`.`Student_id` = %s AND `student_has_subject`.`Subject_id` = %s",
@@ -1141,7 +1141,7 @@ class Subject:
                     delete = messagebox.askyesno("Xoá bản ghi", "Bạn có muốn xóa bản ghi này ?", parent=self.root)
                     if delete > 0:
                         conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                                       database='doan')
+                                                       database='face_recognizer')
                         my_cursor = conn.cursor()
                         sql = "delete from student_has_subject where Student_id=%s and Subject_id=%s"
                         val = (self.var_studentsub.get(), self.var_subsubst.get(),)
@@ -1165,7 +1165,7 @@ class Subject:
             else:
                 try:
                     conn = mysql.connector.connect(host='localhost', user='root', password='',
-                                                   database='doan')
+                                                   database='face_recognizer')
                     my_cursor = conn.cursor()  # "ID Điểm Danh", "Ngày", "ID Sinh Viên"
                     if (self.var_com_searchstd.get() == "ID Sinh viên"):
                         self.var_com_searchstd.set("Student_id")

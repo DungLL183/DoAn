@@ -114,7 +114,7 @@ class Login_Window:
                 messagebox.showerror("Lỗi", "Sai tên đăng nhập, mật khẩu hoặc quyền đăng nhập")
             else:
                 new_print(str(0))
-                # # self.root.destroy()
+                # self.root.destroy()
                 # # import home
                 self.reset()
                 messagebox.showinfo("Thông báo","Bạn đã đăng nhập thành công với quyền Admin")
@@ -142,6 +142,7 @@ class Login_Window:
                 self.reset()
                 self.new_window = Toplevel(self.root)
                 self.app = Face_Recognition_System(self.new_window)
+                
             conn.commit()
             conn.close()
 if __name__=="__main__":

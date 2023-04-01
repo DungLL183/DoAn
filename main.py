@@ -62,22 +62,23 @@ class Face_Recognition_System:
         lbl1.place(x=80, y=60, width=100, height=20)
 
         #====title=========
-        # self.txt = "Hệ thống nhận diện khuôn mặt"
-        # self.count = 0
-        # self.text = ''
-        # self.color = ["#4f4e4d", "#f29844", "red2"]
-        # self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 26, "bold"), bg="white", fg="black",
-        #                      bd=5, relief=FLAT)
-        # self.heading.place(x=360, y=22, width=500)
-        # self.slider()
-        # self.heading_color()
+        self.txt = "Hệ thống nhận diện khuôn mặt"
+        self.count = 0
+        self.text = ''
+        self.color = ["#4f4e4d", "#f29844", "red2"]
+        self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 26, "bold"), bg="white", fg="black",
+                             bd=5, relief=FLAT)
+        self.heading.place(x=360, y=22, width=500)
+        self.slider()
+        self.heading_color()
         # lbl_main = Label(text="Hệ thống nhận diện khuôn mặt", font=("times new roman", 26,"bold"),bg="white", fg="red")
         # lbl_main.place(x=360, y=22, width=500)
-        lbl_main = Label(text="Hệ thống điểm danh sinh viên", font=("times new roman", 26,"bold"),bg="white", fg="red")
-        lbl_main.place(x=360, y=22, width=500)
+        # lbl_main = Label(text="Hệ thống điểm danh sinh viên", font=("times new roman", 26,"bold"),bg="white", fg="red")
+        # lbl_main.place(x=360, y=22, width=500)
 
         main_frame = Frame(bg_img, bd=2, bg="white")
         main_frame.place(x=20, y=20, width=1230, height=600)
+        # main_frame.place(x=20, y=80, width=1230, height=540)
         #=========account===========
         #===get email from db=============
         self.account=""
@@ -115,6 +116,8 @@ class Face_Recognition_System:
                       font=("times new roman", 13, "bold"),
                       bg="white", fg="black",borderwidth=0)
         b1_1.place(x=1150, y=42, width=80, height=35)
+        # b1_1.place(x=1380, y=42, width=80, height=35)
+
 
 
         #=============Button================
@@ -166,7 +169,7 @@ class Face_Recognition_System:
                     activebackground="white", bg="white", borderwidth=0, compound="top")
         b5.place(x=1005, y=170, width=130, height=130)
 
-        #==========thaygiao=============
+        #==========giaovien=============
         img_btn6 = PIL.Image.open(r"ImageFaceDetect\teacher.png")
         img_btn6 = img_btn6.resize((80, 80), PIL.Image.Resampling.LANCZOS)
         self.photobtn6 = ImageTk.PhotoImage(img_btn6)
@@ -177,7 +180,7 @@ class Face_Recognition_System:
         b6.place(x=450, y=410, width=130, height=130)
 
 
-        #==========chuyen nganh================
+        #==========buoihoc================
         img_btn7 = PIL.Image.open(r"ImageFaceDetect\lesson.png")
         img_btn7 = img_btn7.resize((80, 80), PIL.Image.Resampling.LANCZOS)
         self.photobtn7 = ImageTk.PhotoImage(img_btn7)
@@ -196,6 +199,8 @@ class Face_Recognition_System:
                     cursor="hand2",
                     activebackground="white", bg="white", borderwidth=0, compound="top")
         b8.place(x=1005, y=410, width=130, height=130)
+        # b8.place(x=1175, y=410, width=130, height=130)
+
         if(value_from_p1=="0" or value_from_p1==None):
             b4['state']="normal"
             b5['state'] = "normal"
@@ -206,11 +211,11 @@ class Face_Recognition_System:
             change_pass = Button(self.root, text="Đổi mật khẩu", cursor="hand2", command=self.change_pass,
                           font=("times new roman", 13, "bold"),
                           bg="white", fg="black", borderwidth=0)
-            change_pass.place(x=1220, y=48, width=100, height=27)
+            change_pass.place(x=1150, y=70, width=100, height=27)
             b4['state'] = "disabled"
             b5['state'] = "disabled"
             b6['state'] = "disabled"
-            b7['state'] = "disabled"
+            # b7['state'] = "disabled"
             b8['state'] = "disabled"
 
     def slider(self):

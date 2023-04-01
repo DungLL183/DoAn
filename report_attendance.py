@@ -38,21 +38,21 @@ class Report:
         # =========time=========
 
         # ========title=========
-        # self.txt = "Thống kê hệ thống"
-        # self.count = 0
-        # self.text = ''
-        # self.color = ["#4f4e4d", "#f29844", "red2"]
-        # self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 22, "bold"), bg="white", fg="black",
-        #                      bd=0, relief=FLAT)
-        # self.heading.place(x=400, y=22, width=650,height=40)
-        # self.slider()
-        # self.heading_color()
+        self.txt = "Thống kê hệ thống"
+        self.count = 0
+        self.text = ''
+        self.color = ["#4f4e4d", "#f29844", "red2"]
+        self.heading = Label(self.root, text=self.txt, font=("yu gothic ui", 22, "bold"), bg="white", fg="black",
+                             bd=0, relief=FLAT)
+        self.heading.place(x=400, y=22, width=650,height=40)
+        self.slider()
+        self.heading_color()
 
         # main_frame = Frame(bg_img, bd=2, bg="white")
         # main_frame.place(x=20, y=69, width=1280, height=650)
 
-        lbl_main = Label(text="Quản lý thống kê", font=("times new roman", 26,"bold"),bg="white", fg="red")
-        lbl_main.place(x=360, y=22, width=500)
+        # lbl_main = Label(text="Quản lý thống kê", font=("times new roman", 26,"bold"),bg="white", fg="red")
+        # lbl_main.place(x=360, y=22, width=500)
 
         main_frame = Frame(bg_img, bd=2, bg="white")
         main_frame.place(x=20, y=85, width=1230, height=550)
